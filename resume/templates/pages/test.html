@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Form</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container-fluid">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Create a Resume!</h1>
+              </div>
+                 <form>
+                     <h1 class="h4 text-gray-900 mb-4">Personal Info</h1>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="firstname" placeholder="First Name">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="middlename" placeholder="Middle Name">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+            </div>
+         </div>
+        <div class="form-row">
+        <div class="form-group col-md-7">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+
+        <div class="form-group col-md-5">
+          <input type="text" class="form-control" id="inputphone" placeholder="Phone Number">
+
+        </div>
+      </div>
+        <div class="form-row">
+           <div class="form-group col-md-4">
+              <input type="text" class="form-control" id="inputAddress" placeholder="Enter country">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" placeholder="state" id="inputstate">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control"  placeholder="city" id="inputcity">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" id="inputAddress" placeholder="Enter country">
+            </div>
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="inputnationality" placeholder="Nationality">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <input type="Date" class="form-control"  placeholder="Date of birth" id="inputdateofbirth">
+            </div>
+
+            <div class="form-groupcol-md-4">
+                <label for="inputdateofbirth">Gender</label>
+                <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                      <label class="form-check-label" for="inlineRadio1" style="color: #35475e">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2" style="color: #35475e">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                      <label class="form-check-label" for="inlineRadio3" style="color: #35475e">Other</label>
+                </div>
+            </div>
+        </div>
+            <hr>
+  <h1 class="h4 text-gray-900 mb-4">Education</h1>
+
+           <div class="form-row">
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="studyprogram" placeholder="Study Program">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="institution" placeholder="Name of institution">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="course" placeholder="Course, thesis, project">
+            </div>
+         </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+                <input type="Date" class="form-control"  placeholder="started date: " id="inputdateofbirth">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="Date" class="form-control"  placeholder="Ended/ending Date: " id="inputdateofbirth">
+            </div>
+
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="course" placeholder="City, Country">
+            </div>
+         </div>
+
+         <button class="btn btn-danger"><i class="fas fa-plus"></i> Add Education </button>
+          <hr>
+          <h1 class="h4 text-gray-900 mb-4">Working Experience </h1>
+
+           <div class="form-row">
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="wokinginstitution" placeholder="Company/Workplace">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="institution" placeholder="Title/ Position">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="course" placeholder="Course, thesis, project">
+            </div>
+         </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+                <input type="Date" class="form-control"  placeholder="started date: " id="inputdateofbirth">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="Date" class="form-control"  placeholder="Ended/ending Date: " id="inputdateofbirth">
+            </div>
+
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="course" placeholder="City, Country">
+            </div>
+         </div>
+
+        <div class="form-group">
+            <label for="Experience">Experience : </label>
+           <textarea rows="4" cols="50"  class="form-control" name="comment" form="usrform"> Enter text here...</textarea>
+        </div>
+
+         <button class="btn btn-danger"><i class="fas fa-plus"></i> Add Experience </button>
+          <hr>
+  <h1 class="h4 text-gray-900 mb-4">Skills</h1>
+           <div class="form-group">
+               <input type="text" class="form-control" id="institution" placeholder="Enter skill and sepeate by ,">
+          </div>
+          <hr>
+
+  <h1 class="h4 text-gray-900 mb-4">Certificates:</h1>
+           <div class="form-row">
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="course" placeholder="Certificates Name">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="Date" class="form-control"  placeholder="started date: " id="inputdateofbirth">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="Date" class="form-control"  placeholder="Ended/ending Date: " id="inputdateofbirth">
+            </div>
+         </div>
+         <button class="btn btn-danger"><i class="fas fa-plus"></i> Add Certificates </button>
+         <hr>
+  <h1 class="h4 text-gray-900 mb-4">Language</h1>
+          <div class="form-row">
+         <div class="form-group col-md-4">
+              <input type="text" class="form-control" id="course" placeholder="Language">
+            </div>
+             <div class="form-group col-md-4">
+              <button class="btn btn-danger"><i class="fas fa-plus"></i> Add Language</button>
+           </div>
+         </div>
+         <hr>
+  <h1 class="h4 text-gray-900 mb-4">Interest</h1>
+           <div class="form-group">
+           <textarea rows="4" cols="50"  class="form-control" name="comment" form="usrform"> Enter text here...</textarea>
+        </div>
+     <button type="submit" class="btn btn-success"><i class="fas fa-file-alt"></i> Create Resume </button>
+</form>
+              <hr>
+            </div>
+          </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                    <div class="p-5">
+                      <div class="text-center">
+
+                      </div>
+                    </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>

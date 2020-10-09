@@ -1,0 +1,189 @@
+{% extends 'master/master.html' %}
+{% block content %}
+{% load static %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i> Generate Resume</a>
+    </div>
+
+    <!-- Content Row -->
+    {% if user.is_authenticated %}
+    <div class="row">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <a class="nav-link" href="{%url 'resumeform' %}">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary mb-1">
+                                    <h3>Create Resume </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-5 col-md-6 mb-4">
+            <a class="nav-link" href="{%url 'personality_test' %}">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success mb-1">
+                                    <h3>Predict your Personality </h3></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <a class="nav-link" href="{%url 'login'%}">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary mb-1">
+                                    <h3>Create Resume </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-5 col-md-6 mb-4">
+            <a class="nav-link" href="{%url 'login' %}">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success mb-1">
+                                    <h3>Predict your Personality </h3></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- Content Row -->
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+            <!-- Color System -->
+            <div class="row">
+                {% for sdata in personalinfodata %}
+                <div class="col-lg-6 mb-4">
+                   <a class="nav-link" href="{%url 'templates' sdata.id %}">
+                        <div class="card  border-left-warning bg-success text-white shadow">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-white-100 small">
+                                            <h6>{{sdata.firstname | upper}} {{sdata.lastname | upper}} </h6></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <!-- Approach -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Resume Development Approach</h6>
+                </div>
+                <div class="card-body">
+                    <p>In today’s market, resume is first and foremost document required while applying for the job. The
+                        well formatted and beautifully designed resume is very much essential to positively grab the
+                        interviewer attention. Before the personal interview, the employee scans the resume of the
+                        candidate and the resume will leave the first impression about you. </p>
+                    <p class="mb-0">Hence, creating a good, well-formatted and well-organized resume is always a
+                        priority and a necessity as well.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="#">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

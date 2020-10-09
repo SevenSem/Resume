@@ -1,0 +1,45 @@
+{% extends 'master/master.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <a class="nav-link" href="#">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{%static 'assets/img/template1.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <span>Default Template.</span>
+                </div>
+            </div>
+            </a>
+        </div>
+         <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{%static 'assets/img/template1.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <span>Professional Template.</span>
+                </div>
+            </div>
+        </div>
+         <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{%static 'assets/img/template1.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                   <span>Ecommerce Template.</span>
+                </div>
+            </div>
+        </div>
+         <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{%static 'assets/img/template1.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <span>Business Template.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
