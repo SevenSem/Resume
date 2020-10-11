@@ -45,8 +45,7 @@ class AptitudeTest(LoginRequiredMixin, View):
             user.applicant.save()
             return redirect('aptitude_finished')
         else:
-            return render(request, 'personality/aptitude_test.html', {})
-        
+            return render(request, 'personality/aptitude_test.html', {})      
 
 class PersonalityTest(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
