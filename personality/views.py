@@ -50,7 +50,6 @@ class AptitudeTest(LoginRequiredMixin, View):
 
 class PersonalityTest(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-
         qs = PersonalityType.objects.all()
         type_o = PersonalityType.objects.get(id=1)
         type_c = PersonalityType.objects.get(id=2)

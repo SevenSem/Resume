@@ -11,7 +11,7 @@ class Applicant(models.Model):
     user                    = models.OneToOneField(User, on_delete=models.CASCADE)
     personality             = models.ManyToManyField(PersonalityType, blank=True)
     test_score              = models.PositiveIntegerField(default=0)
-    taken_apt_test          = models.BooleanField(default=True)
+    taken_apt_test          = models.BooleanField(default=False)
     taken_personality_test  = models.BooleanField(default=False)
     is_employable           = models.BooleanField(default=False)
     date_joined             = models.DateTimeField(auto_now_add=True)
