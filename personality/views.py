@@ -29,7 +29,7 @@ class AptitudeTest(LoginRequiredMixin, View):
         return render(request, 'personality/aptitude_test.html', context)
     
     def post(self, request, *args, **kwargs):
-        if not request.user.applicant.taken_apt_test and not request.user.is_staff:
+        if not request.user.is_staff:
             choices = [request.POST.get(str(q+1)) for q in range(10)]
             score = 0
             user_choices = TestChoice.objects.filter(pk__in=choices)
@@ -133,12 +133,9 @@ class PersonalityTest(LoginRequiredMixin, View):
             user.applicant.personality.add(type_n) if result == ['YES'] else None
             print('Neurotism', result)
             request.session['done_n'] = True
-            
             user.applicant.taken_personality_test = True
             user.applicant.save()
-
             return redirect('personality_completed')
-    
         return redirect('personality_test')
 
 
