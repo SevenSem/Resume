@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import PersonalityQuestion, PersonalityType, TestQuestion, TestChoice
+from .models import PersonalityQuestion, PersonalityType, TestQuestion, TestChoice,PersonalityData
 
 class PersonalityQuestionAdmin(admin.ModelAdmin):
     list_display = ('question_text', 'category')
@@ -16,3 +16,4 @@ class TestChoiceAdmin(admin.ModelAdmin):
 admin.site.register(TestChoice, TestChoiceAdmin)
 
 admin.site.register(TestQuestion)
+admin.site.register(PersonalityData)

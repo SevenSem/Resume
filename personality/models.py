@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class PersonalityType(models.Model):
@@ -31,3 +32,11 @@ class TestChoice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+class PersonalityData(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    type_o = models.CharField(max_length=100)
+    type_c = models.CharField(max_length=100)
+    type_e = models.CharField(max_length=100)
+    type_a = models.CharField(max_length=100)
+    type_n = models.CharField(max_length=100)
