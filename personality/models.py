@@ -33,6 +33,7 @@ class TestChoice(models.Model):
     def __str__(self):
         return self.choice_text
 
+
 class PersonalityData(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     type_o = models.CharField(max_length=100)
