@@ -10,7 +10,7 @@ from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 
-from .models import TestQuestion, TestChoice, PersonalityType, PersonalityQuestion
+from .models import TestQuestion, TestChoice, PersonalityType, PersonalityQuestion, PersonalityData
 from .utils import clear_test_session
 
 User = get_user_model()
@@ -29,7 +29,7 @@ class AptitudeTest(LoginRequiredMixin, View):
         return render(request, 'personality/aptitude_test.html', context)
     
     def post(self, request, *args, **kwargs):
-        if not request.user.applicant.taken_apt_test and not request.user.is_staff:
+        if not request.user.is_staff:
             choices = [request.POST.get(str(q+1)) for q in range(10)]
             score = 0
             user_choices = TestChoice.objects.filter(pk__in=choices)
@@ -41,7 +41,7 @@ class AptitudeTest(LoginRequiredMixin, View):
             print(score)
             user = User.objects.get(username=request.user.username)
             user.applicant.test_score = score
-            user.applicant.taken_apt_test = True
+            # user.applicant.taken_apt_test = True
             user.applicant.save()
             return redirect('aptitude_finished')
         else:
@@ -63,6 +63,7 @@ class PersonalityTest(LoginRequiredMixin, View):
             'type_a': type_a,
             'type_n': type_n,
         }
+
         return render(request, 'personality/personality_test.html', context)
 
     def post(self, request, *args, **kwargs):
@@ -133,12 +134,9 @@ class PersonalityTest(LoginRequiredMixin, View):
             user.applicant.personality.add(type_n) if result == ['YES'] else None
             print('Neurotism', result)
             request.session['done_n'] = True
-            
             user.applicant.taken_personality_test = True
             user.applicant.save()
-
             return redirect('personality_completed')
-    
         return redirect('personality_test')
 
 
@@ -152,9 +150,11 @@ class PersonalityCompleted(LoginRequiredMixin, View):
             avg_e = request.session.get('avg_e', None) 
             avg_a = request.session.get('avg_a', None) 
             avg_n = request.session.get('avg_n', None)
-            
+
             averages = [avg_o*25, avg_c*25, avg_e*25, avg_a*25, avg_n*25]
             # averages = [3.1, 3.1, 3.2, 3.2, 1.9]
+            obj, created = PersonalityData.objects.get_or_create(user = request.user,type_o=avg_o, type_c=avg_c, type_e=avg_e, type_a=avg_a,type_n=avg_n)
+            
             print("type")
             print(averages)
             if len(averages) != 5 or None in averages:
