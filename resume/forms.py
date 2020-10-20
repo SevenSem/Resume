@@ -8,7 +8,7 @@ class PersonalInfoForm(forms.ModelForm):
             attrs={'required': 'required', 'class': "form-check-input", 'type': "radio"})
                                    )
 
-        fields = ['firstname', 'middlename', 'lastname', 'email', 'dob', 'gender', 'phone', 'country', 'state', 'city']
+        fields = ['firstname', 'middlename', 'lastname', 'email', 'dob', 'gender', 'phone', 'country', 'state', 'city','image']
         widgets = {
 
             'firstname': forms.TextInput(
