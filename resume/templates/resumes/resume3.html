@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+ {% load static %}
+<html>
+<head>
+	<title>{{personalinfodata.firstname | upper}} resume</title>
+	
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body bgcolor="#D5D8DC">
+	<table width="700px" height="800px" align="center">
+		<tr>
+			<td width="200px" bgcolor="1c2833" style="color:white; padding: 20px">
+				<img src="capture.jpg" style="border-radius:50%;  width:160px; height:150px"; >
+				<h1>Personal details</h1> <hr>
+
+				<p><b>Name:</b></br>
+					{{personalinfodata.firstname | upper}} {{personalinfodata.lastname | upper}}<br><br>
+
+					<b>Address:</b> <br>
+					14 Tottenhan Court road <br>london, WITIJY <br><br>
+
+					<b>Phone number:</b><br>
+					{{personalinfodata.phone}}<br><br>
+
+					<b>Email Address:</b> <br>
+					{{personalinfodata.email}} <br> <br>
+
+				<b>Github:</b> <br>
+				alizakhadkagithub.com<br><br>
+
+				<b>linkedin:</b><br>
+				linkedin.com/in/aliza.khadka<br><br>
+
+				<b>twitter:</b><br>
+				aliza-khadka
+				</p>
+				<h3><u>Language</u></h3>
+				<ul type="disc">
+					<li>Nepali</li>
+					<li>English</li>
+					<li>Hindi</li>
+				</ul>
+				
+			</td>
+			<td width="500px" bgcolor="#FDFEFE" style="padding:20px">
+			<h1>{{personalinfodata.firstname | upper}} {{personalinfodata.lastname | upper}}</h1><hr>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
+				<h2>Work experience</h2><hr>
+				<h3>Junior front-end designer</h3>
+				<h5>trinity web ltd, London</h5>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation .</p>
+				<h2>Skills</h2><hr>
+				<ul type="disc">
+					<li>good communication</li>
+					<li>Decision making</li>
+					<li>Leadership</li>
+					<li>project management</li>
+					<li>creative</li>
+					<li>Quick learner</li>
+				</ul>
+				<h2>Education</h2><hr>
+				<h3>Bachelor</h3>
+				<h5>Tribhuwan university</h5>
+				<p><b>BSC.CSIT in Trinity international college</b></p>
+
+			</p>
+			<h2>Certifications</h2><hr>
+			<p>Django framework (IT training Nepal)</p>
+			</td>
+		</tr>
+	</table>
+	
+</body>
+</html>
