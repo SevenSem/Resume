@@ -40,7 +40,7 @@ def resumeForm(request):
         if personalform.is_valid() and eduform.is_valid() \
                 and experienceform.is_valid() and skillsform.is_valid() \
                 and certificateform.is_valid() and languageform.is_valid() and otherform.is_valid():
-            print("test complited")
+            print("test completed")
 
             try:
                 with transaction.atomic():
@@ -85,7 +85,7 @@ def resumeForm(request):
             except IntegrityError:
                 print('error')
 
-            return redirect('resumeform')
+            return redirect('templates',personalinfo.pk)
 
     data = {
         'form': personalform,
@@ -126,7 +126,7 @@ def resume_Update(request,id):
         if personalform.is_valid() and eduform.is_valid() \
                 and experienceform.is_valid() and skillsform.is_valid() \
                 and certificateform.is_valid() and languageform.is_valid() and otherform.is_valid():
-            print("test complited")
+            print("test completed")
             try:
                 with transaction.atomic():
                     personalinfo = personalform.save(commit=False)
