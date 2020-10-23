@@ -3,13 +3,14 @@ from django.contrib.auth.models import User
 
 
 GENDER_CHOICES = (
-   ('M', 'Male'),
-   ('F', 'Female')
+    ('M', 'Male'),
+    ('F', 'Female')
 )
+
 
 class PersonalInfo(models.Model):
     firstname = models.CharField(max_length=100)
-    middlename = models.CharField(max_length=255,blank=True )
+    middlename = models.CharField(max_length=255, blank=True)
     lastname = models.CharField(max_length=100)
     email = models.CharField(max_length=255)
     dob = models.CharField(max_length=255)
@@ -19,7 +20,7 @@ class PersonalInfo(models.Model):
     state = models.CharField(max_length=100)
     city = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images',blank=True)
+    image = models.ImageField(upload_to='images', blank=True)
 
     def __str__(self):
         return self.firstname
@@ -27,23 +28,24 @@ class PersonalInfo(models.Model):
 
 class EducationalInfo(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo,  on_delete=models.CASCADE)
-    program = models.CharField(max_length=255,blank=True)
-    institution = models.CharField(max_length=100,blank=True)
-    course = models.BooleanField(default=0,blank=True)
-    edate1 = models.CharField(max_length=255,blank=True)
-    edate2 = models.CharField(max_length=255,blank=True)
+    program = models.CharField(max_length=255, blank=True)
+    institution = models.CharField(max_length=100, blank=True)
+    course = models.BooleanField(default=0, blank=True)
+    edate1 = models.CharField(max_length=255, blank=True)
+    edate2 = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return self.program
 
+
 class ExperienceInfo(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
-    company = models.CharField(max_length=255,blank=True)
-    title = models.CharField(max_length=255,blank=True)
-    course = models.CharField(max_length=255,blank=True)
-    startingDate = models.CharField(max_length=255,blank=True)
-    endingDate = models.CharField(max_length=255,blank=True)
-    experienceInfo = models.TextField(max_length=255,blank=True)
+    company = models.CharField(max_length=255, blank=True)
+    title = models.CharField(max_length=255, blank=True)
+    course = models.CharField(max_length=255, blank=True)
+    startingDate = models.CharField(max_length=255, blank=True)
+    endingDate = models.CharField(max_length=255, blank=True)
+    experienceInfo = models.TextField(max_length=255, blank=True)
 
     def __str__(self):
         return self.company
@@ -51,25 +53,27 @@ class ExperienceInfo(models.Model):
 
 class Skills(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
-    skill = models.CharField(max_length=255,blank=True)
+    skill = models.CharField(max_length=255, blank=True)
+
 
 class Certificate(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
-    certificate = models.CharField(max_length=255,blank=True)
-    certificateDate = models.CharField(max_length=255,blank=True)
+    certificate = models.CharField(max_length=255, blank=True)
+    certificateDate = models.CharField(max_length=255, blank=True)
+
 
 class Language(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
-    language = models.CharField(max_length=255,blank=True)
+    language = models.CharField(max_length=255, blank=True)
 
 
 class PersonalDescription(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
-    Job_title = models.CharField(max_length=255,blank=True)
-    about = models.TextField(max_length=255,blank=True)
+    Job_title = models.CharField(max_length=255, blank=True)
+    about = models.TextField(max_length=255, blank=True)
+
 
 class Others(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
-    title = models.CharField(max_length=255,blank=True)
-    introduction = models.TextField(max_length=255,blank=True)
-
+    title = models.CharField(max_length=255, blank=True)
+    introduction = models.TextField(max_length=255, blank=True)
