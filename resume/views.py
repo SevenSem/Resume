@@ -19,7 +19,7 @@ def index(request):
 
 
 def resumeForm(request):
-    personalform = PersonalInfoForm(request.POST or None)
+    personalform = PersonalInfoForm(request.POST , request.FILES or None)
     personaldescform = PersonalDescriptionForm(request.POST or None)
     EduFormset = modelformset_factory(EducationalInfo, form=EducationalForm)
     eduform = EduFormset(request.POST or None, queryset=EducationalInfo.objects.none(

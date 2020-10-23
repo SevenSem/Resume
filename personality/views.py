@@ -153,7 +153,8 @@ class PersonalityCompleted(LoginRequiredMixin, View):
 
             averages = [avg_o*25, avg_c*25, avg_e*25, avg_a*25, avg_n*25]
             # averages = [3.1, 3.1, 3.2, 3.2, 1.9]
-            obj, created = PersonalityData.objects.get_or_create(user = request.user,type_o=avg_o, type_c=avg_c, type_e=avg_e, type_a=avg_a,type_n=avg_n)
+
+            created = PersonalityData.objects.create(user = request.user,type_o=avg_o*25, type_c=avg_c*25, type_e=avg_e*25, type_a=avg_a*25,type_n=avg_n*25)
             
             print("type")
             print(averages)

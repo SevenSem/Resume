@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+
 urlpatterns = [
     path('', views.index, name='home'),
     path('createresume', views.resumeForm, name='resumeform'),
@@ -10,5 +11,7 @@ urlpatterns = [
     path('templates/<id>', views.templates, name='templates'),
     path('templates1/<id>', views.templates1, name='templates1'),
     path('pdf_view/<id>', views.ViewPDF.as_view(), name="pdf_view"),
+    path('chart', views.chart, name='chart'),
     path('prediction/', include('prediction.urls'))
+
 ]

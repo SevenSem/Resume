@@ -1,0 +1,45 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+    <div class="container">
+
+        {% if completed %}
+            <h4>You're done</h4>
+            <p>Thank You for taking your time to take these test. We would get back to you through the email you provided.</p>
+            {{averages}}
+            <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+
+        {% else %}
+            <h4>Oopss!!</h4>
+            <p>Something went wrong. Contact the admin if this problem persists.</p>
+        {% endif %}
+        
+        {%for data in avg %}
+        <hr>
+        <label style="float: left;padding-right: 10px;width: 147px;"><strong>Openness </strong></label>
+		<div class="progress" style="height: 30px;">
+	 		 <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{data.type_o}}%"><h4>{{data.type_o}}% </h4></div>
+		</div><br>
+   
+    <label style="float: left;padding-right: 10px;width: 147px;"><strong>Conscientiousness  </strong></label>
+		<div class="progress" style="height: 30px;">
+	 		 <div class="progress-bar progress-bar-striped bg-primary progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{data.type_c}}%"><h4>{{data.type_c}}% </h4></div>
+		</div><br>
+          <label style="float: left;padding-right: 10px;width: 147px;"><strong>Extroversion  </strong></label>
+		<div class="progress" style="height: 30px;">
+	 		 <div class="progress-bar progress-bar-striped bg-success  progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{data.type_e}}%"><h4>{{data.type_e}}% </h4></div>
+		</div><br>
+          <label style="float: left;padding-right: 10px;width: 147px;"><strong>Agreeableness  </strong></label>
+		<div class="progress" style="height: 30px;">
+	 		 <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{data.type_a}}%"><h4>{{data.type_a}}% </h4></div>
+		</div><br>
+          <label style="float: left;padding-right: 10px;width: 147px;"><strong>Neuroticism </strong></label>
+		<div class="progress" style="height: 30px;">
+	 		 <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{data.type_n}}%"><h4>{{data.type_n}}% </h4></div>
+		</div><br>
+        	</div>
+        
+        {%endfor%}
+    </div>
+{% endblock content %}
+    
