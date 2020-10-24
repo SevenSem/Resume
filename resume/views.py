@@ -351,3 +351,9 @@ def apilist(request):
 
 def choosetemplates(request):
     return render(request, 'pages/choosetemplates.html')
+
+def chart(request):
+    data = {
+        'avg' : PersonalityData.objects.all()
+    }
+    return render(request, 'pages/chart.html', data)
