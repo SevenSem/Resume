@@ -354,6 +354,6 @@ def choosetemplates(request):
 
 def chart(request):
     data = {
-        'avg' : PersonalityData.objects.all().order_by('-id')[:2]
+        'avg' : PersonalityData.objects.all().order_by('-id')[:1]
     }
     return render(request, 'pages/chart.html', data)
