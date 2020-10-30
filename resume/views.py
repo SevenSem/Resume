@@ -8,7 +8,7 @@ from django.views.generic import View
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import TaskSerializer
-
+from personality.models import PersonalityData
 
 # Create your views here.
 def index(request):
@@ -354,6 +354,6 @@ def choosetemplates(request):
 
 def chart(request):
     data = {
-        'avg' : PersonalityData.objects.all()
+        'avg' : PersonalityData.objects.all().order_by('-id')[:1]
     }
     return render(request, 'pages/chart.html', data)
