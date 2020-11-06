@@ -8,7 +8,17 @@ GENDER_CHOICES = (
 )
 
 
+class Templates(models.Model):
+    template = models.CharField(max_length=50, blank=True)
+    image = models.ImageField(upload_to='images', blank=True)
+
+    def __str__(self):
+        return self.template
+    
+    
+
 class PersonalInfo(models.Model):
+    template = models.ForeignKey(Templates, on_delete=models.CASCADE,default=1)
     firstname = models.CharField(max_length=100)
     middlename = models.CharField(max_length=255, blank=True)
     lastname = models.CharField(max_length=100)

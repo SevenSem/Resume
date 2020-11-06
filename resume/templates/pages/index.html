@@ -133,7 +133,11 @@
             <div class="row">
                 {% for sdata in personalinfodata %}
                 <div class="col-lg-6 mb-4">
+                {% if sdata.template.id == 1 %}
                    <a class="nav-link" href="{%url 'templates' sdata.id %}">
+                   {% else %}
+                   <a class="nav-link" href="{%url 'templates1' sdata.id %}">
+                   {%endif%}
                         <div class="card  border-left-warning bg-success text-white shadow">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
@@ -151,7 +155,6 @@
                         </div>
                     </a>
                 </div>
-
                 {% endfor %}
                 
             </div>

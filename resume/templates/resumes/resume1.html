@@ -195,13 +195,14 @@
 <body>
   <div class="container">
     <section>
+     {% if personalinfodata.image %}
       <div>
-        {% if personalinfodata.image %}
         <div><img src="{{personalinfodata.image.url}}" alt="avatar" class="avatar"></div>
       </div>
+      
       <div>
         {% else %}
-        <div><img src="#" alt="avatar" class="avatar"></div>
+        <div>hello  </div>
       </div>
       
       {% endif %}

@@ -13,10 +13,16 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Create a Resume!</h1>
                         </div>
-
+                    <p class="text-danger"> Please select resume Name from right side of this page <p>
                         <h1 class="h4 text-gray-900 mb-4">Personal Info</h1>
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                {{form.template}}
+                                </div>
+                            </div>
+                            <hr>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     {{form.firstname}}
@@ -273,7 +279,16 @@
                 <div class="col-lg-5 d-none d-lg-block">
                     <div class="p-5">
                         <div class="text-center">
-
+                            <div class="row">
+                            {%for temp in templates %} 
+                                <div class="col-lg-6 mb-4"> 
+                                <div class="card  border-left-warning bg-info text-white shadow">
+                                      <img style="height:300px; width:100%;" src= "{{temp.image.url}}"> 
+                                      {{temp.template}}
+                                </div>
+                                </div>
+                                {%endfor%}
+                            </div> 
                         </div>
                     </div>
                 </div>
