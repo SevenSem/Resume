@@ -36,5 +36,7 @@ class Resume(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(PersonalInfo,Resume)
 
+admin.site.register(Templates)
+
 
 

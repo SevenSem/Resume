@@ -6,47 +6,20 @@
     <centre></centre><span><h1>Choose A Template</h1></span></centre>
     <div class="row">
         <!-- Earnings (Monthly) Card Example -->
-        
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card" style="width: 18rem;">
-                <a style="text-decoration:none;" class="nav-link" href="{% url 'resumeform'%}">
-              <img class="card-img-top" src="{%static 'assets/img/template1.jpg' %}" alt="Card image cap">
-                <div class="card-body">
-               <span style="color: rgb(23, 32, 32);"> <marquee>Template 1</marquee></span>
-                </div>
-            </div>
-        </a>
-    </div>
+        {%for template in templates %} 
     <div class="col-xl-4 col-md-6 mb-4">
         <div class="card" style="width: 18rem;">
-            <a style="text-decoration:none;" class="nav-link" href="{% url 'resumeform1'%}">
-          <img class="card-img-top" src="{%static 'assets/img/template2.jpg' %}" alt="Card image cap">
+            <a style="text-decoration:none;" class="nav-link" href="{% url 'resumeform' %}">
+          <img class="card-img-top" src="{{template.image.url}}" alt="Card image cap">
             <div class="card-body">
-           <span style="color: darkslategray;"> <marquee>Template 2</marquee></span>
+           <span style="color: darkslategray;"> {{template.template}} </span>
             </div>
         </div>
     </a>
 </div>
-<div class="col-xl-4 col-md-6 mb-4">
-    <div class="card" style="width: 18rem;">
-        <a style="text-decoration:none;" class="nav-link" href="{% url 'resumeform1'%}">
-      <img class="card-img-top" src="{%static 'assets/img/template3.jpg' %}" alt="Card image cap">
-        <div class="card-body">
-       <span style="color: darkslategray;"> <marquee>Template 3</marquee></span>
-        </div>
-    </div>
-</a>
-</div>
-<div class="col-xl-4 col-md-6 mb-4">
-    <div class="card" style="width: 18rem;">
-        <a style="text-decoration:none;" class="nav-link" href="{% url 'resumeform1'%}">
-      <img class="card-img-top" src="{%static 'assets/img/template4.jpg' %}" alt="Card image cap">
-        <div class="card-body">
-       <span style="color: darkslategray;"> <marquee>Template 4</marquee></span>
-        </div>
-    </div>
-</a>
-</div>
+{% endfor %}
+
+
 </div>
 </div>
 

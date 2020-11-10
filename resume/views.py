@@ -4,18 +4,20 @@ from .forms import *
 from django.forms import modelformset_factory
 from django.db import transaction, IntegrityError
 from .utils import *
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic import View
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import TaskSerializer
 from personality.models import PersonalityData
-
+from resume.models import *
 # Create your views here.
 def index(request):
     data = {
         'personalinfodata': PersonalInfo.objects.filter(author__username=request.user)
     }
     return render(request, 'pages/index.html', data)
+
 
 
 def resumeForm(request):
@@ -101,9 +103,13 @@ def resumeForm(request):
         'skillform': skillsform,
         'certificateform': certificateform,
         'languageform': languageform,
-        'others': otherform
+        'others': otherform,
+        'templates': Templates.objects.all(),
     }
     return render(request, 'form/form.html', data)
+
+def updateform(request,id):
+    pass
 
 
 def resume_Update(request, id):
@@ -112,24 +118,25 @@ def resume_Update(request, id):
     personalform = PersonalInfoForm(
         request.POST or None, instance=personaldata)
     EduFormset = modelformset_factory(EducationalInfo, form=EducationalForm)
-    eduform = EduFormset(request.POST or None, queryset=EducationalInfo.objects.filter(personalinfo__id=id),
-                         prefix='educationalInfo')
+    eduform = EduFormset(request.POST or None, queryset=EducationalInfo.objects.none(
+    ), prefix='educationalInfo')
     ExpFormset = modelformset_factory(ExperienceInfo, form=ExperienceForm)
-    experienceform = ExpFormset(request.POST or None, queryset=ExperienceInfo.objects.filter(personalinfo__id=id),
-                                prefix='experienceInfo')
+    experienceform = ExpFormset(
+        request.POST or None, queryset=ExperienceInfo.objects.none(), prefix='experienceInfo')
     SkillFormset = modelformset_factory(Skills, form=SkillForm)
-    skillsform = SkillFormset(request.POST or None, queryset=Skills.objects.filter(personalinfo__id=id),
-                              prefix='skills')
+    skillsform = SkillFormset(request.POST or None,
+                              queryset=Skills.objects.none(), prefix='skills')
     certificateFormset = modelformset_factory(
         Certificate, form=CertificateForm)
-    certificateform = certificateFormset(request.POST or None, queryset=Certificate.objects.filter(personalinfo__id=id),
+    certificateform = certificateFormset(request.POST or None, queryset=Certificate.objects.none(),
                                          prefix='certificate')
     languageFormset = modelformset_factory(Language, form=LanguageForm)
-    languageform = languageFormset(request.POST or None, queryset=Language.objects.filter(personalinfo__id=id),
-                                   prefix='language')
+    languageform = languageFormset(
+        request.POST or None, queryset=Language.objects.none(), prefix='language')
+
     otherFormset = modelformset_factory(Others, form=OthersForm)
-    otherform = otherFormset(request.POST or None, queryset=Others.objects.filter(
-        personalinfo__id=id), prefix='other')
+    otherform = otherFormset(request.POST or None,
+                             queryset=Others.objects.none(), prefix='other')
 
     if request.method == 'POST':
         if personalform.is_valid() and eduform.is_valid() \
@@ -139,7 +146,6 @@ def resume_Update(request, id):
             try:
                 with transaction.atomic():
                     personalinfo = personalform.save(commit=False)
-                    personalinfo.author = request.user
                     personalinfo.save()
 
                     for educationalInfo in eduform:
@@ -184,102 +190,10 @@ def resume_Update(request, id):
         'skillform': skillsform,
         'certificateform': certificateform,
         'languageform': languageform,
-        'others': otherform
+        'others': otherform,
+        'templates': Templates.objects.all(),
     }
     return render(request, 'form/form.html', data)
-
-
-#                                 code for templates1
-
-def resumeForm1(request):
-    personalform = PersonalInfoForm(request.POST or None)
-    personaldescform = PersonalDescriptionForm(request.POST or None)
-    EduFormset = modelformset_factory(EducationalInfo, form=EducationalForm)
-    eduform = EduFormset(request.POST or None, queryset=EducationalInfo.objects.none(
-    ), prefix='educationalInfo')
-    ExpFormset = modelformset_factory(ExperienceInfo, form=ExperienceForm)
-    experienceform = ExpFormset(
-        request.POST or None, queryset=ExperienceInfo.objects.none(), prefix='experienceInfo')
-    SkillFormset = modelformset_factory(Skills, form=SkillForm)
-    skillsform = SkillFormset(request.POST or None,
-                              queryset=Skills.objects.none(), prefix='skills')
-    certificateFormset = modelformset_factory(
-        Certificate, form=CertificateForm)
-    certificateform = certificateFormset(request.POST or None, queryset=Certificate.objects.none(),
-                                         prefix='certificate')
-    languageFormset = modelformset_factory(Language, form=LanguageForm)
-    languageform = languageFormset(
-        request.POST or None, queryset=Language.objects.none(), prefix='language')
-
-    otherFormset = modelformset_factory(Others, form=OthersForm)
-    otherform = otherFormset(request.POST or None,
-                             queryset=Others.objects.none(), prefix='other')
-
-    if request.method == 'POST':
-        if personalform.is_valid() and eduform.is_valid() \
-                and experienceform.is_valid() and skillsform.is_valid() \
-                and certificateform.is_valid() and languageform.is_valid() and otherform.is_valid():
-            print("test completed")
-
-            try:
-                with transaction.atomic():
-                    personalinfo = personalform.save(commit=False)
-                    personalinfo.author = request.user
-                    personalinfo.save()
-
-                    aboutpersonal = personaldescform.save(commit=False)
-                    aboutpersonal.personalinfo = personalinfo
-                    aboutpersonal.save()
-
-                    for educationalInfo in eduform:
-                        data = educationalInfo.save(commit=False)
-                        data.personalinfo = personalinfo
-                        data.save()
-
-                    for experienceInfo in experienceform:
-                        experienceforms = experienceInfo.save(commit=False)
-                        experienceforms.personalinfo = personalinfo
-                        experienceforms.save()
-
-                    for skills in skillsform:
-                        skillsforms = skills.save(commit=False)
-                        skillsforms.personalinfo = personalinfo
-                        skillsforms.save()
-
-                    for certicate in certificateform:
-                        certificateforms = certicate.save(commit=False)
-                        certificateforms.personalinfo = personalinfo
-                        certificateforms.save()
-
-                    for language in languageform:
-                        languageforms = language.save(commit=False)
-                        languageforms.personalinfo = personalinfo
-                        languageforms.save()
-
-                    for other in otherform:
-                        otherforms = other.save(commit=False)
-                        otherforms.personalinfo = personalinfo
-                        otherforms.save()
-
-            except IntegrityError:
-                print('error')
-
-            return redirect('templates1', personalinfo.pk)
-
-    data = {
-        'form': personalform,
-        'personaldescform': personaldescform,
-        'formset': eduform,
-        'experienceform': experienceform,
-        'skillform': skillsform,
-        'certificateform': certificateform,
-        'languageform': languageform,
-        'others': otherform
-    }
-    return render(request, 'form/form.html', data)
-
-    #                                end template 1
-
 
 def templates(request, id):
     if request.user.is_authenticated:
@@ -312,7 +226,9 @@ def templatesdata(id):
         'experienceinfodata': ExperienceInfo.objects.filter(personalinfo__id=id),
         'certificatedata': Certificate.objects.filter(personalinfo__id=id),
         'skilldata': Skills.objects.filter(personalinfo__id=id),
-        'languagedata': Language.objects.filter(id=id),
+        'languagedata': Language.objects.filter(personalinfo__id=id),
+        'personaldesc': PersonalDescription.objects.filter(personalinfo__id=id),
+        'othersinfo': Others.objects.filter(personalinfo__id=id),
     }
     return data
 
@@ -350,7 +266,11 @@ def apilist(request):
 
 
 def choosetemplates(request):
-    return render(request, 'pages/choosetemplates.html')
+    temp = Templates.objects.all()
+    data= {
+        'templates' : temp
+    }
+    return render(request, 'pages/choosetemplates.html',data)
 
 def chart(request):
     data = {
