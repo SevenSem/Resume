@@ -4,6 +4,7 @@ from .forms import *
 from django.forms import modelformset_factory
 from django.db import transaction, IntegrityError
 from .utils import *
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic import View
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -16,6 +17,7 @@ def index(request):
         'personalinfodata': PersonalInfo.objects.filter(author__username=request.user)
     }
     return render(request, 'pages/index.html', data)
+
 
 
 def resumeForm(request):
@@ -106,6 +108,9 @@ def resumeForm(request):
     }
     return render(request, 'form/form.html', data)
 
+def updateform(request,id):
+    pass
+
 
 def resume_Update(request, id):
     personaldata = PersonalInfo.objects.get(id=id)
@@ -113,24 +118,25 @@ def resume_Update(request, id):
     personalform = PersonalInfoForm(
         request.POST or None, instance=personaldata)
     EduFormset = modelformset_factory(EducationalInfo, form=EducationalForm)
-    eduform = EduFormset(request.POST or None, queryset=EducationalInfo.objects.filter(personalinfo__id=id),
-                         prefix='educationalInfo')
+    eduform = EduFormset(request.POST or None, queryset=EducationalInfo.objects.none(
+    ), prefix='educationalInfo')
     ExpFormset = modelformset_factory(ExperienceInfo, form=ExperienceForm)
-    experienceform = ExpFormset(request.POST or None, queryset=ExperienceInfo.objects.filter(personalinfo__id=id),
-                                prefix='experienceInfo')
+    experienceform = ExpFormset(
+        request.POST or None, queryset=ExperienceInfo.objects.none(), prefix='experienceInfo')
     SkillFormset = modelformset_factory(Skills, form=SkillForm)
-    skillsform = SkillFormset(request.POST or None, queryset=Skills.objects.filter(personalinfo__id=id),
-                              prefix='skills')
+    skillsform = SkillFormset(request.POST or None,
+                              queryset=Skills.objects.none(), prefix='skills')
     certificateFormset = modelformset_factory(
         Certificate, form=CertificateForm)
-    certificateform = certificateFormset(request.POST or None, queryset=Certificate.objects.filter(personalinfo__id=id),
+    certificateform = certificateFormset(request.POST or None, queryset=Certificate.objects.none(),
                                          prefix='certificate')
     languageFormset = modelformset_factory(Language, form=LanguageForm)
-    languageform = languageFormset(request.POST or None, queryset=Language.objects.filter(personalinfo__id=id),
-                                   prefix='language')
+    languageform = languageFormset(
+        request.POST or None, queryset=Language.objects.none(), prefix='language')
+
     otherFormset = modelformset_factory(Others, form=OthersForm)
-    otherform = otherFormset(request.POST or None, queryset=Others.objects.filter(
-        personalinfo__id=id), prefix='other')
+    otherform = otherFormset(request.POST or None,
+                             queryset=Others.objects.none(), prefix='other')
 
     if request.method == 'POST':
         if personalform.is_valid() and eduform.is_valid() \
@@ -140,7 +146,6 @@ def resume_Update(request, id):
             try:
                 with transaction.atomic():
                     personalinfo = personalform.save(commit=False)
-                    personalinfo.author = request.user
                     personalinfo.save()
 
                     for educationalInfo in eduform:
@@ -221,7 +226,9 @@ def templatesdata(id):
         'experienceinfodata': ExperienceInfo.objects.filter(personalinfo__id=id),
         'certificatedata': Certificate.objects.filter(personalinfo__id=id),
         'skilldata': Skills.objects.filter(personalinfo__id=id),
-        'languagedata': Language.objects.filter(id=id),
+        'languagedata': Language.objects.filter(personalinfo__id=id),
+        'personaldesc': PersonalDescription.objects.filter(personalinfo__id=id),
+        'othersinfo': Others.objects.filter(personalinfo__id=id),
     }
     return data
 
