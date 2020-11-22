@@ -9,6 +9,7 @@ urlpatterns = [
     path('resume_Update/<id>', views.resume_Update, name='resume_Update'),
     path('templates/<id>', views.templates, name='templates'),
     path('templates1/<id>', views.templates1, name='templates1'),
+    path('templates2/<id>', views.templates2, name='templates2'),
     path('pdf_view/<id>', views.ViewPDF.as_view(), name="pdf_view"),
     path('chart', views.chart, name='chart'),
     path('prediction/', include('prediction.urls'))
