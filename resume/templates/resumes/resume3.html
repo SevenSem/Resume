@@ -44,26 +44,23 @@
 			</td>
 			<td width="500px" bgcolor="#FDFEFE" style="padding:20px">
 			<h1>{{personalinfodata.firstname | upper}} {{personalinfodata.lastname | upper}}</h1><hr>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
+			<p>{{personaldesc.about}}
 				<h2>Work experience</h2><hr>
-				<h3>Junior front-end designer</h3>
-				<h5>trinity web ltd, London</h5>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation .</p>
+				{% for experience in experienceinfodata %}
+					<h3>{{experience.title}}</h3>
+					<h5>{{experience.company}},{{experience.startingDate}} - {{experience.endingDate}}</h5>
+					<p>{{experience.experienceInfo}}</p>
+				{% endfor %}
 				<h2>Skills</h2><hr>
+				{% for skills in skilldata %}
 				<ul type="disc">
-					<li>good communication</li>
-					<li>Decision making</li>
-					<li>Leadership</li>
-					<li>project management</li>
-					<li>creative</li>
-					<li>Quick learner</li>
+					<li>{{skills.skill}}</li>
 				</ul>
+				{% endfor %}
 				<h2>Education</h2><hr>
 				<h3>Bachelor</h3>
-				<h5>Tribhuwan university</h5>
-				<p><b>BSC.CSIT in Trinity international college</b></p>
+				<h5>{{education.institution}}</h5>
+				<p><b>{{education.program}}|{{education.edate1}} - {{education.edate2}}</b></p>
 
 			</p>
 			<h2>Certifications</h2><hr>
