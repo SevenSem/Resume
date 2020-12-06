@@ -4,8 +4,12 @@ from django.urls import reverse
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import CreateView
+from django.conf import settings
 
 
+User = settings.AUTH_USER_MODEL
 # Create your views here.
 def register(request):
     if request.method == 'POST':

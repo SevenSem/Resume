@@ -11,13 +11,13 @@ from rest_framework.response import Response
 from .serializers import TaskSerializer
 from personality.models import PersonalityData
 from resume.models import *
+
 # Create your views here.
 def index(request):
     data = {
         'personalinfodata': PersonalInfo.objects.filter(author__username=request.user)
     }
     return render(request, 'pages/index.html', data)
-
 
 
 def resumeForm(request):
@@ -108,9 +108,6 @@ def resumeForm(request):
     }
     return render(request, 'form/form.html', data)
 
-def updateform(request,id):
-    pass
-
 
 def resume_Update(request, id):
     personaldata = PersonalInfo.objects.get(id=id)
@@ -118,8 +115,7 @@ def resume_Update(request, id):
     personalform = PersonalInfoForm(
         request.POST or None, instance=personaldata)
     EduFormset = modelformset_factory(EducationalInfo, form=EducationalForm)
-    eduform = EduFormset(request.POST or None, queryset=EducationalInfo.objects.none(
-    ), prefix='educationalInfo')
+    eduform = EduFormset(request.POST or None, queryset=EducationalInfo.objects.filter(personalinfo__id=id), prefix='educationalInfo')
     ExpFormset = modelformset_factory(ExperienceInfo, form=ExperienceForm)
     experienceform = ExpFormset(
         request.POST or None, queryset=ExperienceInfo.objects.none(), prefix='experienceInfo')
@@ -139,6 +135,7 @@ def resume_Update(request, id):
                              queryset=Others.objects.none(), prefix='other')
 
     if request.method == 'POST':
+        print("test sssssssss--------------------------------")
         if personalform.is_valid() and eduform.is_valid() \
                 and experienceform.is_valid() and skillsform.is_valid() \
                 and certificateform.is_valid() and languageform.is_valid() and otherform.is_valid():
@@ -172,15 +169,22 @@ def resume_Update(request, id):
                         languageforms = language.save(commit=False)
                         languageforms.personalinfo = personalinfo
                         languageforms.save()
+
                     for other in otherform:
                         otherforms = other.save(commit=False)
                         otherforms.personalinfo = personalinfo
                         otherforms.save()
 
+                    return redirect('resumeform')
+
             except IntegrityError:
                 print('error')
-
+        
             return redirect('resumeform')
+
+        else:
+            print(eduform.errors)
+        
 
     data = {
         'form': personalform,
@@ -272,8 +276,9 @@ def choosetemplates(request):
     }
     return render(request, 'pages/choosetemplates.html',data)
 
+
 def chart(request):
     data = {
-        'avg' : PersonalityData.objects.all().order_by('-id')[:1]
+        'avg' : PersonalityData.objects.filter(user__username= request.user).order_by('-id')[:1]
     }
     return render(request, 'pages/chart.html', data)

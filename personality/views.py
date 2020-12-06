@@ -48,7 +48,12 @@ class AptitudeTest(LoginRequiredMixin, View):
             return render(request, 'personality/aptitude_test.html', {})      
 
 class PersonalityTest(LoginRequiredMixin, View):
+    
     def get(self, request, *args, **kwargs):
+        user = User.objects.get(username=request.user.username)
+        user.applicant.taken_apt_test = True
+        user.applicant.save()
+
         qs = PersonalityType.objects.all()
         type_o = PersonalityType.objects.get(id=1)
         type_c = PersonalityType.objects.get(id=2)
@@ -91,6 +96,7 @@ class PersonalityTest(LoginRequiredMixin, View):
             clf_opn = pickle.load(pickle_in)
             answers = pd.DataFrame([choices])
             result = clf_opn.predict(answers)
+            user = User.objects.get(username=request.user.username)
             user.applicant.personality.add(type_o) if result == ['YES'] else None
             print('Openness', result)
             request.session['done_o'] = True
