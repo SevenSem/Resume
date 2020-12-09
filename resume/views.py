@@ -231,8 +231,8 @@ def templatesdata(id):
         'certificatedata': Certificate.objects.filter(personalinfo__id=id),
         'skilldata': Skills.objects.filter(personalinfo__id=id),
         'languagedata': Language.objects.filter(personalinfo__id=id),
-        'personaldesc': PersonalDescription.objects.filter(personalinfo__id=id),
-        'othersinfo': Others.objects.filter(personalinfo__id=id),
+        'personaldesc': PersonalDescription.objects.get(personalinfo__id=id),
+        'othersinfo': Others.objects.get(personalinfo__id=id),
     }
     return data
 
