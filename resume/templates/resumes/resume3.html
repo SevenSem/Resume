@@ -36,11 +36,11 @@
 				</p>
 				<h3><u>Language</u></h3>
 				<ul type="disc">
-						{% for languages in languagedata %}
-						<ul>
-						  <li>{{languages.language}}</li>
-						</ul>
-					  {% endfor %}
+					{% for languages in languagedata %}
+					<ul>
+						<li>{{languages.language}}</li>
+					</ul>
+					{% endfor %}
 					
 				</ul>
 				
@@ -70,6 +70,10 @@
 			
 			<h2>Certifications</h2><hr>
 			<p>Django framework (IT training Nepal)</p>
+
+
+			<h2>Others</h2><hr>
+			<p>{{othersinfo.title}}<br>{{othersinfo.introduction}}</p>
 			</td>
 		</tr>
 	</table>
