@@ -9,7 +9,7 @@ from django.views.generic import View
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import TaskSerializer
-from personality.models import PersonalityData
+from personality.models import PersonalityData,PersonalityResult
 from resume.models import *
 
 # Create your views here.
@@ -231,7 +231,7 @@ def templatesdata(id):
         'certificatedata': Certificate.objects.filter(personalinfo__id=id),
         'skilldata': Skills.objects.filter(personalinfo__id=id),
         'languagedata': Language.objects.filter(personalinfo__id=id),
-        'personaldesc': PersonalDescription.objects.filter(personalinfo__id=id),
+        'personaldesc': PersonalDescription.objects.get(personalinfo__id=id),
         'othersinfo': Others.objects.filter(personalinfo__id=id),
     }
     return data
@@ -279,6 +279,7 @@ def choosetemplates(request):
 
 def chart(request):
     data = {
-        'avg' : PersonalityData.objects.filter(user__username= request.user).order_by('-id')[:1]
+        'avg' : PersonalityData.objects.filter(user__username= request.user).order_by('-id')[:1],
+        'personalityresult' : PersonalityResult.objects.all()
     }
     return render(request, 'pages/chart.html', data)

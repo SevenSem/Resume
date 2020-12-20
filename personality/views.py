@@ -88,7 +88,6 @@ class PersonalityTest(LoginRequiredMixin, View):
         user = User.objects.get(username=request.user.username)
         
         test_type = request.POST.get('test_type')
-
         if test_type == '1':
             print('Openness Test')
             request.session['avg_o'] = sum(choices)/len(choices)
@@ -125,6 +124,7 @@ class PersonalityTest(LoginRequiredMixin, View):
             request.session['avg_a'] = sum(choices)/len(choices)
             pickle_in = open(os.path.join(classifer_base, 'agreeable.pkl'), 'rb')
             clf_agb = pickle.load(pickle_in)
+            print(clf_agb)
             answers = pd.DataFrame([choices])
             result = clf_agb.predict(answers)
             user.applicant.personality.add(type_a) if result == ['YES'] else None
@@ -157,10 +157,11 @@ class PersonalityCompleted(LoginRequiredMixin, View):
             avg_a = request.session.get('avg_a', None) 
             avg_n = request.session.get('avg_n', None)
 
-            averages = [avg_o*25, avg_c*25, avg_e*25, avg_a*25, avg_n*25]
+            averages = [avg_o, avg_c, avg_e, avg_a, avg_n]
+            average = [avg_o*20, avg_c*20, avg_e*20, avg_a*20, avg_n*20]
             # averages = [3.1, 3.1, 3.2, 3.2, 1.9]
 
-            created = PersonalityData.objects.create(user = request.user,type_o=avg_o*25, type_c=avg_c*25, type_e=avg_e*25, type_a=avg_a*25,type_n=avg_n*25)
+            created = PersonalityData.objects.create(user = request.user,type_o=avg_o*20, type_c=avg_c*20, type_e=avg_e*20, type_a=avg_a*20,type_n=avg_n*20)
             
             print("type")
             print(averages)
@@ -183,7 +184,7 @@ class PersonalityCompleted(LoginRequiredMixin, View):
             completed = False
         context = {
             'completed': completed,
-            'avg' : averages,
+            'avg' : average,
             'labels' : ['Openness','Conscientiousness ','Extroversion ','Agreeableness ','Neuroticism']
 
         }
