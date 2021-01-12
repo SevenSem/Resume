@@ -16,3 +16,27 @@ display :none;
 #certificates{
 display :none;
 }
+
+
+.formbox{
+    margin-top: 70%;
+    margin-left: 50%;
+
+	width: 320px;
+	height: 420px;
+	background:rgb(117, 113, 187) ;
+	color:	black;
+	top:50%;
+	left: 50%;
+	position: absolute;
+    transform: translate(-50%, -50%);
+
+}
+.formbox h2{
+        text-align: center;
+        color: rgb(237, 241, 241);
+        font-size: 30px;
+        font-weight: 800;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
