@@ -13,7 +13,7 @@ import PyPDF2
 
 class FileFieldView(CreateView):
     model = UploadCv
-    fields = ['personalinfo', 'uploadfile']
+    fields = ['personalinfo', 'uploadfile', 'keywords']
     template_name = 'pages/upload.html' 
     success_url = 'uploadcv'  
 
@@ -22,21 +22,20 @@ class FileFieldView(CreateView):
         return super().form_valid(form)
 
 def prediction(request):
-    pdf_file = UploadCv.objects.all()[:1]
-    for data in pdf_file:
-        if request.user == data.cv_user:
-            pdf = f'media/{data.uploadfile}'
-            epdf = f"'{pdf}'"
-    print(epdf)
-    pdfFileObj = open(pdf, 'rb')
+    pdf_file = UploadCv.objects.filter(cv_user=request.user).order_by("-id")[0]
+    print(pdf_file.uploadfile)
+
+    epdf =  f'media/{pdf_file.uploadfile}'
+    pdfFileObj = open(epdf, 'rb')
     pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-    print(pdfReader.numPages)
     pageObj = pdfReader.getPage(0)
     a = pageObj.extractText()
-    print(a)
+    b = a.replace("\r","")
+    texts = b.replace("\n","")
+    print(texts)
     
 
-    paragraph = "fsdfns python asfasf asda safa is am arae"
+    paragraph = texts
     words = get_words(paragraph)
     sentences, len_sentences = get_sentences(paragraph)
     words_count, words_len = get_word_count(words)
@@ -62,7 +61,17 @@ def prediction(request):
     print('')
     print('-'*30)
 
-    test_list = ['python','django'] 
+    keywords_test=  UploadCv.objects.filter(cv_user=request.user).order_by("-id")[0]
+    keyword = keywords_test.keywords
+
+    #converting string into list, using string.split 
+    """ here keyword is string fetched from database, we need it in string so we convert it"""
+    def Convert(string):
+        li = list(string.split(","))
+        return li
+    
+    test_list = Convert(keyword)
+    print(test_list)
     # x = input('Enter your name:')
     # test_list.append(x)
 
@@ -72,6 +81,8 @@ def prediction(request):
     print(words_counts)
 
     data = {
-        'data': results
+        'data': results,
+        'keywords' : test_list,
+        'file_url': epdf
     }
     return render(request,'pages/prediction.html', data)

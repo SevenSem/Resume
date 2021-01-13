@@ -13,6 +13,7 @@ def validate_file_size(value):
 
 class UploadCv(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo,  on_delete=models.CASCADE)
+    keywords = models.CharField(max_length=200, null=True)
     cv_user = models.ForeignKey(User, on_delete=models.CASCADE)
     uploadfile = models.FileField(null =True, blank = True, upload_to='files/', validators=[validate_file_size])
             
