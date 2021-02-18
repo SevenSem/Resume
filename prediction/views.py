@@ -15,7 +15,7 @@ class FileFieldView(CreateView):
     model = UploadCv
     fields = ['personalinfo', 'uploadfile', 'keywords']
     template_name = 'pages/upload.html' 
-    success_url = 'uploadcv'  
+    success_url = 'prediction'  
 
     def form_valid(self, form):
         form.instance.cv_user = self.request.user
@@ -24,8 +24,9 @@ class FileFieldView(CreateView):
 def prediction(request):
     pdf_file = UploadCv.objects.filter(cv_user=request.user).order_by("-id")[0]
     print(pdf_file.uploadfile)
-
+    
     epdf =  f'media/{pdf_file.uploadfile}'
+    print(epdf)
     pdfFileObj = open(epdf, 'rb')
     pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
     pageObj = pdfReader.getPage(0)
@@ -34,7 +35,6 @@ def prediction(request):
     texts = b.replace("\n","")
     print(texts)
     
-
     paragraph = texts
     words = get_words(paragraph)
     sentences, len_sentences = get_sentences(paragraph)

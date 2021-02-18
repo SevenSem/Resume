@@ -12,6 +12,6 @@ urlpatterns = [
     path('templates2/<id>', views.templates2, name='templates2'),
     path('pdf_view/<id>', views.ViewPDF.as_view(), name="pdf_view"),
     path('chart', views.chart, name='chart'),
-    path('prediction/', include('prediction.urls'))
+    path('prediction/', include('prediction.urls'), name="prediction")
 
 ]

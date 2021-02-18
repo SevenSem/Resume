@@ -23,7 +23,7 @@
                             {% for field in form %}
                             <div class="form-group row">
                                 <div class="col-sm-10 mb-3 mb-sm-0">
-                                   {{ field.html_name }}:  {{field}}
+                                    {{field}}
                                     {% for error in field.errors %}
                                     <small style="color:red">{{ error }}</small>
                                     {% endfor %}

@@ -4,12 +4,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.db import transaction
-from .models import Applicant
+from .models import Applicant 
 # User = settings.AUTH_USER_MODEL
 User = get_user_model()
 
 class RegistrationForm(UserCreationForm):
-
     password1 = forms.CharField(label='Password',widget=forms.PasswordInput(
         attrs={'class':'form-control form-control-user','placeholder':'Enter Password' }))
     password2 = forms.CharField(label='ConfirmPassword',widget=forms.PasswordInput(
