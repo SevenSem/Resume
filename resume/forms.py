@@ -1,10 +1,12 @@
 from django import forms
-from .models import *
 
+from resume import models
+
+from django.forms.models import inlineformset_factory
 class PersonalInfoForm(forms.ModelForm):
     class Meta:
-        model = PersonalInfo
-        gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.RadioSelect(
+        model = models.PersonalInfo
+        gender = forms.ChoiceField(widget=forms.RadioSelect(
             attrs={'required': 'required', 'class': "form-check-input", 'type': "radio"})
                                    )
 
@@ -35,7 +37,7 @@ class PersonalInfoForm(forms.ModelForm):
 
 class EducationalForm(forms.ModelForm):
     class Meta:
-        model = EducationalInfo
+        model = models.EducationalInfo
         fields = ['program', 'institution', 'course', 'edate1', 'edate2']
         widgets = {
 
@@ -54,7 +56,7 @@ class EducationalForm(forms.ModelForm):
 
 class ExperienceForm(forms.ModelForm):
     class Meta:
-        model = ExperienceInfo
+        model = models.ExperienceInfo
         fields = ['company', 'title', 'course', 'startingDate', 'endingDate', 'experienceInfo']
 
         widgets = {
@@ -76,7 +78,7 @@ class ExperienceForm(forms.ModelForm):
 
 class SkillForm(forms.ModelForm):
     class Meta:
-        model = Skills
+        model = models.Skills
         fields = ['skill']
 
         widgets = {
@@ -88,7 +90,7 @@ class SkillForm(forms.ModelForm):
 
 class CertificateForm(forms.ModelForm):
     class Meta:
-        model = Certificate
+        model = models.Certificate
         fields = ['certificate', 'certificateDate']
         widgets = {
 
@@ -100,7 +102,7 @@ class CertificateForm(forms.ModelForm):
 
 class LanguageForm(forms.ModelForm):
     class Meta:
-        model = Language
+        model = models.Language
         fields = ['language']
 
         widgets = {
@@ -112,7 +114,7 @@ class LanguageForm(forms.ModelForm):
 
 class PersonalDescriptionForm(forms.ModelForm):
     class Meta:
-        model = PersonalDescription
+        model = models.PersonalDescription
         fields = ['about','Job_title']
 
         widgets = {
@@ -126,7 +128,7 @@ class PersonalDescriptionForm(forms.ModelForm):
 
 class OthersForm(forms.ModelForm):
     class Meta:
-        model = Others
+        model = models.Others
         fields = ['title','introduction']
 
         widgets = {
@@ -135,3 +137,20 @@ class OthersForm(forms.ModelForm):
             'introduction': forms.Textarea(
                 attrs={'class': 'form-control', 'placeholder': "Description"})
         }
+
+
+EducationalFormset = inlineformset_factory(models.PersonalInfo,
+                                   models.EducationalInfo, form=EducationalForm, extra=1, can_delete=True)
+ExperienceFormset = inlineformset_factory(models.PersonalInfo,
+                                              models.ExperienceInfo, form=ExperienceForm, extra=1, can_delete=True)
+SkillFormset = inlineformset_factory(models.PersonalInfo,
+                                            models.Skills, form=SkillForm, extra=1, can_delete=True)
+CertificateFormset = inlineformset_factory(models.PersonalInfo,
+                                   models.Certificate, form=CertificateForm, extra=1, can_delete=True)
+LanguageFormset = inlineformset_factory(models.PersonalInfo,
+                                              models.Language, form=LanguageForm, extra=1, can_delete=True)
+OthersFormset = inlineformset_factory(models.PersonalInfo,
+                                            models.Others, form=OthersForm, extra=1, can_delete=True)
+                                            
+PersonalDescriptionFormset = inlineformset_factory(models.PersonalInfo,
+                                            models.PersonalDescription, form=PersonalDescriptionForm)

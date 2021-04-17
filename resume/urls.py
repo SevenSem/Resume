@@ -1,13 +1,13 @@
 from django.urls import path, include
-from . import views
+from resume import views
 
 urlpatterns = [ 
     path('', views.index, name='home'),
     path('createresume', views.resumeForm, name='resumeform'),
     path('choosetemplates', views.choosetemplates, name='choosetemplates'),
     path('apilist', views.apilist, name='apilist'),
-    path('resume_Update/<id>', views.resume_Update, name='resume_Update'),
     path('templates/<id>', views.templates, name='templates'),
+    path('update-resume/<int:pk>/', views.ResumeUpdate.as_view(), name="update-resume"),
     path('templates1/<id>', views.templates1, name='templates1'),
     path('templates2/<id>', views.templates2, name='templates2'),
     path('pdf_view/<id>', views.ViewPDF.as_view(), name="pdf_view"),
