@@ -22,7 +22,11 @@ def index(request):
     data = {
         'personalinfodata': PersonalInfo.objects.filter(author__username=request.user)
     }
-    return render(request, 'pages/index.html', data)
+    if request.user.is_authenticated:
+        return render(request, 'pages/index.html', data)
+    else:
+         return render(request, 'pages/homee.html', data)
+
 
 
 def resumeForm(request):
