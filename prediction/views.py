@@ -5,6 +5,7 @@ from .idf import get_idf_sentences, get_idf_words
 from .stringmanip import clean_sentence, get_sentences, get_words
 from .tf import get_tf_sentences, get_tf_words
 from .models import UploadCv
+import fitz
 
 from django.views.generic.edit import FormView, CreateView
 from .forms import FileFieldForm
@@ -13,7 +14,7 @@ import PyPDF2
 
 class FileFieldView(CreateView):
     model = UploadCv
-    fields = ['personalinfo', 'uploadfile', 'keywords']
+    fields = ['uploadfile', 'keywords']
     template_name = 'pages/upload.html' 
     success_url = 'prediction'  
 
@@ -23,16 +24,19 @@ class FileFieldView(CreateView):
 
 def prediction(request):
     pdf_file = UploadCv.objects.filter(cv_user=request.user).order_by("-id")[0]
-    print(pdf_file.uploadfile)
-    
     epdf =  f'media/{pdf_file.uploadfile}'
-    print(epdf)
-    pdfFileObj = open(epdf, 'rb')
-    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-    pageObj = pdfReader.getPage(0)
-    a = pageObj.extractText()
-    b = a.replace("\r","")
-    texts = b.replace("\n","")
+    with fitz.open(epdf) as doc:
+        texts = ""
+        for page in doc:
+            texts += page.getText()
+
+    print(texts)
+
+    # pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+    # pageObj = pdfReader.getPage(0)
+    # a = pageObj.extractText()
+    # b = a.replace("\r","")
+    # texts = b.replace("\n","")
     print(texts)
     
     paragraph = texts
