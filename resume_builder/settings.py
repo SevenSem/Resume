@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'personality',
     'prediction',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -128,10 +129,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
+    "http://localhost:8000",
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+#SMTP Configuration
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'gmail_here'
+EMAIL_HOST_PASSWORD = 'password_here'
