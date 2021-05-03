@@ -4,7 +4,7 @@ from .forms import *
 from django.forms import modelformset_factory
 from django.db import transaction, IntegrityError
 from .utils import *
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView,TemplateView
 from django.views.generic import View
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -18,6 +18,24 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.edit import FormView
 
 # Create your views here.
+class Home(CreateView):
+    model = Messagebox
+    form_class = forms.MessagesForm
+    template_name = "pages/homee.html"
+    success_url = reverse_lazy('home')
+    def form_valid(self, form):
+        form.instance.posted_by = self.request.user
+        form.save()
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["personalinfodata"] = PersonalInfo.objects.filter(author__username=self.request.user)
+        return context
+    
+class Dashboard(TemplateView):
+    template_name = "pages/index.html"
+    
 def index(request):
     data = {
         'personalinfodata': PersonalInfo.objects.filter(author__username=request.user)
