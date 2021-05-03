@@ -70,6 +70,11 @@
 					<ul class="nav navbar-nav navbar-right">
                         <li><a class="hover-btn-new log orange" href="{%url 'logout'%}"><span>Logout</span></a></li>
                     </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="hover-btn-new log orange" href="{%url 'dashboard'%}"><span>Dashboard</span></a></li>
+                    </ul>
+
           {%else%}
           <ul class="nav navbar-nav navbar-right">
                         <li><a class="hover-btn-new log orange" href="{%url 'login'%}"><span>Login</span></a></li>
@@ -285,13 +290,29 @@
     </div>
     <div class="contact-form">
     <h2 style="text-align:left;">Contact Us</h2>
-    <form style= "color:blue;" class="contact" action="" method="POST">
-        <input type="text" name="name" class="text-box" placeholder="Your Name" required>
-        <input type="text" name="email" class="text-box" placeholder="Your Email" required>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        <input type="submit" name="submit" class="send-btn" value="send">
-
-    </form>
+    <form  method="POST">
+            {% csrf_token %}
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  {{form.full_Name}}
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                  {{form.email}}
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+               {{form.subject}}
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                {{form.message}}
+                <div class="validate"></div>
+              </div>
+              
+             <button  class="btn btn-success" type="submit">Send Message</button>
+            </form>
 </div>
 </div>
 </section>                  

@@ -50,7 +50,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('home')
+            return render(request,'pages/index.html')
         else:
             messages.info(request, "Wrong username and password")
             return redirect('login')

@@ -37,6 +37,7 @@ class Resume(admin.ModelAdmin):
 admin.site.register(PersonalInfo,Resume)
 
 admin.site.register(Templates)
+admin.site.register(Messagebox)
 
 
 
