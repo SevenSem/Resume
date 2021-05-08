@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.db import transaction
-from .models import Applicant 
+from .models import Applicant, Profile
 # User = settings.AUTH_USER_MODEL
 User = get_user_model()
 
@@ -53,6 +53,27 @@ class RegistrationForm(UserCreationForm):
     def save(self):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
-        user.save()
+        user.save() 
+        profile = Profile.objects.create(user=user)
         applicant = Applicant.objects.create(user=user)
         return user
+
+    # @transaction.atomic
+    # def save(self):
+    #     user = super().save(commit=False)
+    #     user.save()
+    #     profile = Profile.objects.create(user=user)
+    #     return user
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']
