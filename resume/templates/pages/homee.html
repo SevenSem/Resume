@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
      <!-- Site Metas -->
-    <title>Automated resume builder and personality prediction</title>  
+    <title>Automated Resume Builder and Personality Prediction</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -32,6 +32,7 @@
 
     <!-- Modernizer for Portfolio -->
     <script src="{% static 'home/js/modernizer.js '%}"></script>
+    
 
 </head>
 <body class="host_version"> 
@@ -46,9 +47,10 @@
 	</div> {% endcomment %}
 	<!-- END LOADER -->	
 	
-	<!-- Start header -->
+    <!-- Start header -->
+    <!-- chilli-color:#8b0015     midnightblue:	#001c48;    arizona-blue:#0c234b   sky:81d3eb e1f6ff-->
 	<header class="top-navbar">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light " style="background-color:#001C4B;">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="index.html">
 					<h3 style="color: #fff; font-size:35px; font-family: Arial, Helvetica, sans-serif; ">A4 Team</h3>
@@ -59,7 +61,7 @@
                     <span class="icon-bar"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-host">
-					<ul class="navbar-nav ml-auto">
+					<ul class="navbar-nav ml-auto" >
 						<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="#overviews">About Us</a></li>
 						
@@ -72,7 +74,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="hover-btn-new log orange" href="{%url 'dashboard'%}"><span>Dashboard</span></a></li>
+                        <li><a class="hover-btn-new log orange" href="{%url 'dashboard'%}" ><span>Dashboard</span></a></li>
                     </ul>
 
           {%else%}
@@ -95,13 +97,13 @@
 		</ol>
 		<div class="carousel-inner" role="listbox">
 			<div class="carousel-item active">
-				<div id="home" class="first-section" style="background-image:url('{% static 'home/images/slider-01.jpg' %}');">
+				<div id="home" class="first-section" style="background-image:url('{% static 'home/images/homeimage6.jpg' %}');">
 					<div class="dtab">
 						<div class="container">
 							<div class="row">
 								<div class="col-md-12 col-sm-12 text-right">
 									<div class="big-tagline">
-										<h2><strong>Create </strong> resume smartly</h2>
+										<h2><strong>Create </strong> Resume smartly</h2>
 										<p class="lead">Personality Prediction using your Resume </p>
 											<a href="#contacts" class="hover-btn-new"><span>Contact Us</span></a>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -114,14 +116,14 @@
 				</div><!-- end section -->
 			</div>
 			<div class="carousel-item">
-				<div id="home" class="first-section" style="background-image:url('{% static 'home/images/slider-02.jpg' %}');">
+				<div id="home" class="first-section" style="background-image:url('{% static 'home/images/homeimage5.jpg' %}');">
 					<div class="dtab">
 						<div class="container">
 							<div class="row">
 								<div class="col-md-12 col-sm-12 text-left">
 									<div class="big-tagline">
-										<h2 data-animation="animated zoomInRight">Create<strong>resume smartly</strong></h2>
-										<p class="lead" data-animation="animated fadeInLeft"> Feel free to choose design</p>
+										<h2 data-animation="animated zoomInRight">Create<strong>Resume Smartly</strong></h2>
+										<p class="lead" data-animation="animated fadeInLeft"> Feel free to choose design.</p>
 											<a href="#" class="hover-btn-new"><span>Contact Us</span></a>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<a href="#" class="hover-btn-new"><span>Read More</span></a>
@@ -133,14 +135,14 @@
 				</div><!-- end section -->
 			</div>
 			<div class="carousel-item">
-				<div id="home" class="first-section" style="background-image:url('{% static 'home/images/slider-03.jpg' %}');">
+				<div id="home" class="first-section" style="background-image:url('{% static 'home/images/homeimage3.jpg' %}');">
 					<div class="dtab">
 						<div class="container">
 							<div class="row">
 								<div class="col-md-12 col-sm-12 text-center">
 									<div class="big-tagline">
 										<h2 data-animation="animated zoomInRight"><strong>Create</strong> Resume Smartly</h2>
-										<p class="lead" data-animation="animated fadeInLeft">your skills describe your ability</p>
+										<p class="lead" data-animation="animated fadeInLeft">Your skills describe your ability.</p>
 											<a href="#" class="hover-btn-new"><span>Contact Us</span></a>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<a href="#" class="hover-btn-new"><span>Read More</span></a>
@@ -164,19 +166,19 @@
 			</a>
 		</div>
 	</div>
-	
-    <div id="overviews" class="section wb">
-        <div class="container">
+	<!-- #009688; -->
+    <div id="overviews" class="section wb" >
+        <div class="container" >
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
-                    <h3 style="color:#009688; ">About US</h3>
+                    <h3 style="color:orange;">About US</h3>
                     <!--<p class="lead"> Feel free to contact us</p>-->
                 </div>
             </div><!-- end title -->
         
-            <div class="row align-items-center">
+            <!-- <div class="row align-items-center">
                
-			</div>
+			</div> -->
 			<div class="row align-items-center">
 				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="post-media wow fadeIn">
@@ -186,8 +188,8 @@
 				
 				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="message-box">
-                        <h2 style="color: #003366;">Know Us More</h2>
-                        <p style="text-align: justify;">This site is based on automated resume builder and know your personality using <b>Personality Prediction</b>.
+                        <!-- <h2 style="color: #003366;">Know Us More</h2> -->
+                        <p style="text-align: justify;font-weight:500;font-size: 16px;">This site is based on automated resume builder and know your personality using <b>Personality Prediction</b>.
 							It has not been easy journey for us to create this site.This site is user-friendly and we have tried 
 							our best to make it simple so that user can use it without having any problem. Creating a resume for business
 							purpose just by editing the texts, knowing the chances of getting job from your resume and prediction 
@@ -203,7 +205,7 @@
         </div><!-- end container -->
     </div><!-- end section -->
              
-  <section class="team-section" id="Team">
+  <section class="team-section" id="Team" style="background-color: #001C4B;">
     <div class="container">
         <div class="row">
             <div class="section-title">
@@ -212,16 +214,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="team-items">
-                 <div class="item">
+            <div class="team-items" >
+                 <div class="item" >
                      <img src="{% static 'home/images/anusha.jpg' %}" alt="team" height="280px" />
                      <div class="inner">
-                         <div class="info">
+                         <div class="info" style="background-color: #001C4B;"> 
                               <h5>Anusha Panta</h5>
                               <p>Project Manager</p>
                               <div class="social-links" >
                                
-                                <a href=""><span><i class="fab fa-facebook-f"></i></span></a>
+                                  <a href=""><span><i class="fab fa-facebook-f"></i></span></a>
                                   <a href=""><span><i class="fab fa-twitter"></i></span></a>
                                   <a href=""><span><i class="fab fa-linkedin"></i></span></a>
                                   <a href=""><span><i class="fab fa-youtube"></i></span></a>
@@ -232,7 +234,7 @@
                  <div class="item">
                      <img src="{% static 'home/images/akash.jpg' %}" alt="team" height="280px" />
                      <div class="inner">
-                         <div class="info">
+                         <div class="info" style="background-color: #001C4B;" >
                               <h5>Akash Adhikari</h5>
                               <p>Back End Developer</p>
                               <div class="social-links">
@@ -247,7 +249,7 @@
                  <div class="item">
                      <img src="{% static 'home/images/aliza.jpg' %}" alt="team"  height="280px"/>
                      <div class="inner">
-                         <div class="info">
+                         <div class="info" style="background-color: #001C4B;">
                               <h5>Aliza Khadka</h5>
                               <p>Front End Developer</p>
                               <div class="social-links">
@@ -261,8 +263,8 @@
                  </div>
                  <div class="item">
                      <img src="{% static 'home/images/achyut.jpg' %}" alt="team" height="280px"/>
-                     <div class="inner">
-                         <div class="info">
+                     <div class="inner" >
+                         <div class="info" style="background-color:#001C4B;">
                               <h5>Achyut Neupane</h5>
                               <p>Back End Developer</p>
                               <div class="social-links">
@@ -279,9 +281,9 @@
     </div>
  </section>
  
- <section class="contacts" id="contacts" style="background-image:url('{% static 'home/images/banner.jpg' %}');">
+ <section class="contacts" id="contacts" style="background-image:url('{% static 'home/images/homeimage2.jpg' %}');">
 <div class="contact-section">
-    <div class="contact-info">
+    <div class="contact-info" style="color:#001C4B;">
         <div><i class="fa fa-map-marker"></i>Dillibazar, KTM, Nepal</div>
         <div><i class="fa fa-envelope"></i>A4@email.com</div>
         <div><i class="fa fa-phone"></i>+997 9861858686</div>
@@ -289,7 +291,7 @@
     
     </div>
     <div class="contact-form">
-    <h2 style="text-align:left;">Contact Us</h2>
+    <h2 style="text-align:left;color: #001C4B;">Contact Us</h2>
     <form  method="POST">
             {% csrf_token %}
               <div class="form-row">
@@ -317,23 +319,22 @@
 </div>
 </section>                  
  <section>
-
- <footer>
-    <div class="footer-content">
-        <h3>A4 team</h3>
-        <p>This site is designed by A4 team. Feel free to give feedbacks in contact section. THANKYOU!</p>
-        <ul class="socials">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-        </ul>
-    </div>
-    <div class="footer-bottom">
-        <p>Copyright &copy;2020 A4 team. designed by <span>us</span></p>
-    </div>
-</footer>
+    <footer>
+        <div class="footer-content" style="background-color:#87ceeb;color:#001C4B;">
+            <h2 style="margin-top: 40px;font-size: 32px;"><strong>A4 Team</strong></h2>
+            <p style="font-size: 15px;"><b>This site is designed by A4 team. Feel free to give feedbacks in contact section. THANKYOU!</b></p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom" style="background-color:#001C4B ;color: darkorange;">
+            <p><b>Copyright &copy;2020 A4 team. designed by <span>us</span></b></p>
+        </div>
+    </footer>
 </section>
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>

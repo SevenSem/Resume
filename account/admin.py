@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group
 
 from django.conf import settings
 
-from .models import Applicant
+from .models import Applicant, Profile
 
 User = get_user_model()
 
@@ -30,6 +30,7 @@ class CustomUserAdmin(UserAdmin):
     get_employable.short_description = 'Is Employable'
 
 admin.site.unregister(User)
+admin.site.register(Profile)
 admin.site.register(User, CustomUserAdmin)
 
 admin.site.unregister(Group)
