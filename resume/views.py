@@ -279,3 +279,7 @@ def chart(request):
     }
     return render(request, 'pages/chart.html', data)
 
+class resumeDeleteView(DeleteView):
+    template_name = 'pages/confirmdelete.html'
+    model = models.PersonalInfo
+    success_url = reverse_lazy('home')
