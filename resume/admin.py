@@ -40,3 +40,7 @@ admin.site.register(Templates)
 
 
 
+
+@admin.register(Messagebox)
+class ContactDetails(admin.ModelAdmin):
+    list_display = ['full_Name', 'subject','created_date']

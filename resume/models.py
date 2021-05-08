@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import date
 
 
 GENDER_CHOICES = (
@@ -87,3 +88,17 @@ class Others(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, blank=True)
     introduction = models.TextField(max_length=255, blank=True)
+
+
+class Messagebox(models.Model):
+    created_date = models.DateField(default=date.today)
+    full_Name = models.CharField(default='', max_length=100)
+    email = models.CharField(default='', max_length=30, blank=True)
+    subject = models.CharField(default='', max_length=50, blank=True)
+    message = models.CharField(default='', max_length=400, blank=True)
+
+    def __str__(self):
+        return self.full_Name
+
+    class Meta:
+        ordering = ['-created_date' ]
