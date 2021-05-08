@@ -154,3 +154,19 @@ OthersFormset = inlineformset_factory(models.PersonalInfo,
                                             
 PersonalDescriptionFormset = inlineformset_factory(models.PersonalInfo,
                                             models.PersonalDescription, form=PersonalDescriptionForm)
+
+
+class MessagesForm(forms.ModelForm):
+    class Meta:
+        model = models.Messagebox
+        exclude =['created_date']
+        widgets = {
+            'full_Name': forms.TextInput(
+                attrs={'class': 'form-control', 'required': 'required', 'placeholder': "Full Name"}),
+            'email': forms.TextInput(
+                attrs={'class': 'form-control ','placeholder': "Email"}),
+            'subject': forms.TextInput(
+                attrs={'class': 'form-control', 'required': 'required', 'placeholder': "Subject"}),
+            'message': forms.Textarea(
+                attrs={'class': 'form-control ',"rows":5, "cols":20,  'placeholder': "Your Message"}),
+        }

@@ -7,9 +7,9 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
        {%if user.is_authenticated %}
-        <h1 class="h3 mb-0 text-gray-800">Hello,  {{user}}</h1>
+        <h1 class="h3 mb-0 " style="color:#2e7d32;"><b>Welcome,  {{user|upper}}</b></h1>
         {%else%}
-        <h1 class="h3 mb-0 text-gray-800">Hello, User</h1>
+        <h1 class="h3 mb-0 " style="color:#2e7d32;">Welcome, User</h1>
         {%endif %}
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-download fa-sm text-white-50"></i> Generate Resume</a>
@@ -20,13 +20,13 @@
     <div class="row">
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-4 col-md-6 mb-4">
-            <a class="nav-link" href="{%url 'choosetemplates' %}">
+            <a class="nav-link" href="{%url 'resumeform' %}">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary mb-1">
-                                    <h3>Create Resume </h3>
+                                    <h3><b>Create Resume</b> </h3>
                                 </div>
                             </div>
                         </div>
@@ -42,8 +42,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success mb-1">
-                                    <h3>Predict your Personality </h3></div>
+                                <div class="text-xs font-weight-bold text-primary mb-1">
+                                    <h3><b>Predict your Personality</b> </h3></div>
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                 {% else %}
                     <a class="nav-link" href="{%url 'templates' sdata.id %}">
                 {%endif%}
-                        <div class="card  border-left-warning bg-success text-white shadow">
+                        <div class="card  border-left-warning  text-white shadow" style="background-color:#2e7d32;">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     
@@ -162,6 +162,11 @@
                             </div>
                         </div>
                     </a>
+                    <center>
+                    <div class="col-lg-6 mb-4 center" style="margin-top:-6px">
+                    <a class="btn btn-primary" href="{%url 'update_resume' sdata.id %}"><i class="fa fa-edit" style="color:#fff"></i></a>
+                    <a class="btn btn-danger"><i class="fa fa-trash" style="color:#fff"></i></a>
+                    </div></center>
                 </div>
                 {% endfor %}
                 

@@ -14,11 +14,11 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-
+  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css'%}">
     <!-- Site CSS -->
@@ -70,6 +70,11 @@
 					<ul class="nav navbar-nav navbar-right">
                         <li><a class="hover-btn-new log orange" href="{%url 'logout'%}"><span>Logout</span></a></li>
                     </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="hover-btn-new log orange" href="{%url 'dashboard'%}"><span>Dashboard</span></a></li>
+                    </ul>
+
           {%else%}
           <ul class="nav navbar-nav navbar-right">
                         <li><a class="hover-btn-new log orange" href="{%url 'login'%}"><span>Login</span></a></li>
@@ -97,7 +102,7 @@
 								<div class="col-md-12 col-sm-12 text-right">
 									<div class="big-tagline">
 										<h2><strong>Create </strong> resume smartly</h2>
-										<p class="lead">personality prediction using your resume </p>
+										<p class="lead">Personality Prediction using your Resume </p>
 											<a href="#contacts" class="hover-btn-new"><span>Contact Us</span></a>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<a href="#about" class="hover-btn-new"><span>Read More</span></a>
@@ -175,13 +180,13 @@
 			<div class="row align-items-center">
 				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="post-media wow fadeIn">
-                        <img src="{% static 'home/images/blog_2.jpg '%}" alt="" class="img-fluid img-rounded">
+                        <img src="{% static 'home/images/resumeabout.jpg '%}" alt="" class="img-fluid img-rounded">
                     </div><!-- end media -->
                 </div><!-- end col -->
 				
 				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="message-box">
-                        <h2 style="color: #0582E3;">Know Us More</h2>
+                        <h2 style="color: #003366;">Know Us More</h2>
                         <p style="text-align: justify;">This site is based on automated resume builder and know your personality using <b>Personality Prediction</b>.
 							It has not been easy journey for us to create this site.This site is user-friendly and we have tried 
 							our best to make it simple so that user can use it without having any problem. Creating a resume for business
@@ -203,7 +208,7 @@
         <div class="row">
             <div class="section-title">
                 <h1>Our Team</h1>
-                <p>you can contact us through the social media links for further inquiry</p>
+                <p>You can contact us through the social media links for further enquiry.</p>
             </div>
         </div>
         <div class="row">
@@ -214,11 +219,12 @@
                          <div class="info">
                               <h5>Anusha Panta</h5>
                               <p>Project Manager</p>
-                              <div class="social-links">
-                                  <a href=""><span class="fa fa-facebook"></span></a>
-                                  <a href=""><span class="fa fa-twitter"></span></a>
-                                  <a href=""><span class="fa fa-linkedin"></span></a>
-                                  <a href=""><span class="fa fa-youtube"></span></a>
+                              <div class="social-links" >
+                               
+                                <a href=""><span><i class="fab fa-facebook-f"></i></span></a>
+                                  <a href=""><span><i class="fab fa-twitter"></i></span></a>
+                                  <a href=""><span><i class="fab fa-linkedin"></i></span></a>
+                                  <a href=""><span><i class="fab fa-youtube"></i></span></a>
                               </div>
                          </div>
                      </div>
@@ -230,10 +236,10 @@
                               <h5>Akash Adhikari</h5>
                               <p>Back End Developer</p>
                               <div class="social-links">
-                                  <a href=""><span class="fa fa-facebook"></span></a>
-                                  <a href=""><span class="fa fa-twitter"></span></a>
-                                  <a href=""><span class="fa fa-linkedin"></span></a>
-                                  <a href=""><span class="fa fa-youtube"></span></a>
+                                  <a href=""><span><i class="fab fa-facebook-f"></i></span></a>
+                                  <a href=""><span><i class="fab fa-twitter"></i></span></a>
+                                  <a href=""><span><i class="fab fa-linkedin"></i></span></a>
+                                  <a href=""><span><i class="fab fa-youtube"></i></span></a>
                               </div>
                          </div>
                      </div>
@@ -245,10 +251,10 @@
                               <h5>Aliza Khadka</h5>
                               <p>Front End Developer</p>
                               <div class="social-links">
-                                  <a href=""><span class="fa fa-facebook"></span></a>
-                                  <a href=""><span class="fa fa-twitter"></span></a>
-                                  <a href=""><span class="fa fa-linkedin"></span></a>
-                                  <a href=""><span class="fa fa-youtube"></span></a>
+                                  <a href=""><span><i class="fab fa-facebook-f"></i></span></a>
+                                  <a href=""><span><i class="fab fa-twitter"></i></span></a>
+                                  <a href=""><span><i class="fab fa-linkedin"></i></span></a>
+                                  <a href=""><span><i class="fab fa-youtube"></i></span></a>
                               </div>
                          </div>
                      </div>
@@ -260,10 +266,10 @@
                               <h5>Achyut Neupane</h5>
                               <p>Back End Developer</p>
                               <div class="social-links">
-                                  <a href=""><span class="fa fa-facebook"></span></a>
-                                  <a href=""><span class="fa fa-twitter"></span></a>
-                                  <a href=""><span class="fa fa-linkedin"></span></a>
-                                  <a href=""><span class="fa fa-youtube"></span></a>
+                                  <a href=""><span><i class="fab fa-facebook-f"></i></span></a>
+                                  <a href=""><span><i class="fab fa-twitter"></i></span></a>
+                                  <a href=""><span><i class="fab fa-linkedin"></i></span></a>
+                                  <a href=""><span><i class="fab fa-youtube"></i></span></a>
                               </div>
                          </div>
                      </div>
@@ -279,18 +285,34 @@
         <div><i class="fa fa-map-marker"></i>Dillibazar, KTM, Nepal</div>
         <div><i class="fa fa-envelope"></i>A4@email.com</div>
         <div><i class="fa fa-phone"></i>+997 9861858686</div>
-        <div><i class="fa fa-clock-o"></i>mon - fri 8:00 AM to 5:00 PM</div>
+        <div><i class="fas fa-user-clock"></i>Mon - Fri 8:00 AM to 5:00 PM</div>
     
     </div>
     <div class="contact-form">
-    <h2>Contact Us</h2>
-    <form class="contact" action="" method="POST">
-        <input type="text" name="name" class="text-box" placeholder="your name" required>
-        <input type="text" name="email" class="text-box" placeholder="your email" required>
-        <textarea name="message" rows="5" placeholder="your message" required></textarea>
-        <input type="submit" name="submit" class="send-btn" value="send">
-
-    </form>
+    <h2 style="text-align:left;">Contact Us</h2>
+    <form  method="POST">
+            {% csrf_token %}
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  {{form.full_Name}}
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                  {{form.email}}
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+               {{form.subject}}
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                {{form.message}}
+                <div class="validate"></div>
+              </div>
+              
+             <button  class="btn btn-success" type="submit">Send Message</button>
+            </form>
 </div>
 </div>
 </section>                  
@@ -309,7 +331,7 @@
         </ul>
     </div>
     <div class="footer-bottom">
-        <p>copyright &copy;2020 A4 team. designed by <span>us</span></p>
+        <p>Copyright &copy;2020 A4 team. designed by <span>us</span></p>
     </div>
 </footer>
 </section>
