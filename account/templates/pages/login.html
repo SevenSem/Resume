@@ -1,7 +1,7 @@
 {% extends 'master/accountmaster.html' %}
 {% block content %}
 {% load static %}
-<body class="bg-gradient-success" >
+<body class="" style="background-image:url('{% static 'home/images/color8.jpg' %}');background-size:100%;" >
 
   <div class="container">
 
@@ -41,7 +41,8 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                      <!-- h4 text-gray-900 mb-4" -->
+                    <h1 class="h4 mb-4" style="color:darkorange;font-size: 24px;"><b>Welcome Back!</b></h1>
                   </div>
                   <form class="user" method="POST">
                       {% csrf_token %}
@@ -69,11 +70,11 @@
                     </a> {% endcomment %}
                   </form>
                   <hr>
-                  <div class="text-center">
-                    <a class="small" href="{%url 'reset_password' %}"><b>Forgot Password?</b></a>
+                  <div class="text-center" >
+                    <a class="small" href="{%url 'reset_password' %}" style="color:#001C4B;font-size: 18px;"><b>Forgot Password?</b></a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="{%url 'register' %}"><b>Create an Account!</b></a>
+                    <a class="small" href="{%url 'register' %}" style="color:#001C4B;font-size: 18px;"><b>Create an Account!</b></a>
                   </div>
                 </div>
               </div>
