@@ -9,7 +9,7 @@
 *.mdb
 *.pdb
 *.sqlite3
-
+db/*.sqlite3
 ### Django ###
 *.log
 *.pot
