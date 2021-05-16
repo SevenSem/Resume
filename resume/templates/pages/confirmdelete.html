@@ -1,0 +1,18 @@
+{% extends 'master/master.html'  %}
+
+{% block content %}
+<!-- new -->
+<form method="post">{% csrf_token %}
+<div class="jumbotron ">
+    <h1 class="display-5">Hello, {{user.username|upper}}</h1>
+    <p class="lead">Are you sure you want to delete "{{ object }}" from your Dashboard ?</p>
+    <hr class="my-4">
+    <input type="submit" value = "Delete" class="btn btn-danger btn-lg" role="button">
+    <a class="btn btn-primary btn-lg" href="{% url 'home'%}" role="button">Cancel</a>
+
+
+   
+  </div>
+</form>
+
+{% endblock %}

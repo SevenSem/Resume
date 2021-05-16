@@ -24,17 +24,23 @@ class Home(CreateView):
     template_name = "pages/homee.html"
     success_url = reverse_lazy('home')
     def form_valid(self, form):
-        form.instance.posted_by = self.request.user
         form.save()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
+        print(self.request.user)
         context = super().get_context_data(**kwargs)
         context["personalinfodata"] = PersonalInfo.objects.filter(author__username=self.request.user)
         return context
     
 class Dashboard(TemplateView):
     template_name = "pages/index.html"
+
+    def get_context_data(self, **kwargs):
+        print(self.request.user)
+        context = super().get_context_data(**kwargs)
+        context["personalinfodata"] = PersonalInfo.objects.filter(author__username=self.request.user)
+        return context
     
 def index(request):
     data = {
@@ -279,3 +285,7 @@ def chart(request):
     }
     return render(request, 'pages/chart.html', data)
 
+class resumeDeleteView(DeleteView):
+    template_name = 'pages/confirmdelete.html'
+    model = models.PersonalInfo
+    success_url = reverse_lazy('home')
