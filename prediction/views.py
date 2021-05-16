@@ -6,6 +6,7 @@ from .stringmanip import clean_sentence, get_sentences, get_words
 from .tf import get_tf_sentences, get_tf_words
 from .models import UploadCv
 import fitz
+from personality.models import * 
 
 from django.views.generic.edit import FormView, CreateView
 from .forms import FileFieldForm
@@ -32,11 +33,6 @@ def prediction(request):
 
     print(texts)
 
-    # pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-    # pageObj = pdfReader.getPage(0)
-    # a = pageObj.extractText()
-    # b = a.replace("\r","")
-    # texts = b.replace("\n","")
     print(texts)
     
     paragraph = texts
@@ -83,10 +79,19 @@ def prediction(request):
     words_counts = [data for data in words_count if any(i in data for i in test_list)]
 
     print(words_counts)
+    def drawChart():
+        datas = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Work', {data}],
+        ['Eat', 2],
+        ])
+        return draw
 
     data = {
         'data': results,
         'keywords' : test_list,
-        'file_url': epdf
+        'file_url': epdf,
+        'avg' : PersonalityData.objects.filter(user__username= request.user).order_by('-id')[:1],
+        'personalityresult' : PersonalityResult.objects.all()
     }
     return render(request,'pages/prediction.html', data)
