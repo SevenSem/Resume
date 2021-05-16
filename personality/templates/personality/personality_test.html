@@ -10,8 +10,8 @@
         <p>Avg: {{request.session.avg_n}} Done: {{request.session.done_n|default:False}}</p> -->
 
             {% if not request.session.done_o|default:False %}
-                <div style="color:#003366;"><h1>{{type_o.name}}</h1></div>
-                <form  style="color:#003366;" action="" method="post">
+                <div style="color:#001c4b;"><h1>{{type_o.name}}</h1></div>
+                <form  style="color:#001c4b;" action="" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="test_type" value="{{ type_o.id }}">
                     {% include "personality/snippets/personality_choices.html" with personality_type=type_o %} 
@@ -20,8 +20,8 @@
                     </div>
                 </form>
             {% elif not request.session.done_c|default:False %}
-                 <div style="color:#003366;"><h1>{{type_c.name}}</h1></div>
-                <form   style="color:#003366;"action="" method="post">
+                 <div style="color:#001c4b;"><h1>{{type_c.name}}</h1></div>
+                <form   style="color:#001c4b;"action="" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="test_type" value="{{ type_c.id }}">
                     {% include "personality/snippets/personality_choices.html" with personality_type=type_c %} 
@@ -30,8 +30,8 @@
                     </div>
                 </form>
             {% elif not request.session.done_e|default:False %}
-                 <div style="color:#003366;"><h1>{{type_e.name}}</h1></div>
-                <form   style="color:#003366;"action="" method="post">
+                 <div style="color:#001c4b;"><h1>{{type_e.name}}</h1></div>
+                <form   style="color:#001c4b;"action="" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="test_type" value="{{ type_e.id }}">
                     {% include "personality/snippets/personality_choices.html" with personality_type=type_e %} 
@@ -40,8 +40,8 @@
                     </div>
                 </form>
             {% elif not request.session.done_a|default:False %}
-                 <div style="color:#003366;"><h1>{{type_a.name}}</h1></div>
-                <form   style="color:#003366;"action="" method="post">
+                 <div style="color:#001c4b;"><h1>{{type_a.name}}</h1></div>
+                <form   style="color:#001c4b;"action="" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="test_type" value="{{ type_a.id }}">
                     {% include "personality/snippets/personality_choices.html" with personality_type=type_a %} 
@@ -50,8 +50,8 @@
                     </div>
                 </form>
             {% elif not request.session.done_n|default:False %}
-                 <div style="color:#003366;"><h1>{{type_n.name}}</h1></div>
-                <form   style="color:#003366;"action="" method="post">
+                 <div style="color:#001c4b;"><h1>{{type_n.name}}</h1></div>
+                <form   style="color:#001c4b;"action="" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="test_type" value="{{ type_n.id }}">
                     {% include "personality/snippets/personality_choices.html" with personality_type=type_n %} 

@@ -1,20 +1,20 @@
 {% extends 'master/accountmaster.html' %}
 {% block content %}
 {% load static %}
-<body class="" style="background-color:#003366;">
+<body class="" style="background-color:#001C4B;">
 <div class="container-fluid">
 
     <div class="card o-hidden border-0 shadow-lg my-5">
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
-            <div class="row">
+            <div class="row" >
                 <div class="col-lg-6">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create a Resume!</h1>
+                            <h1 class="h4 text-gray-900 mb-4" style="color:#001C4B;font-weight: 800;font-size: 26px;">CREATE RESUME !!!</h1>
                         </div>
-                    <p class="text-danger"> Please select resume Name from right side of this page <p>
-                        <h1 class="h4 text-gray-900 mb-4">Personal Info</h1>
+                    <p class="text-warning"> Please select resume template from right side of this page. <p>
+                        <h1 class="h4 text-gray-900 mb-4" style="color:#001C4B;font-weight: 700;">Personal Information</h1>
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-row">
@@ -23,8 +23,8 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
+                            <div class="form-row" >
+                                <div class="form-group col-md-4" >
                                     {{form.firstname}}
                                 </div>
                                 <div class="form-group col-md-4">
@@ -74,7 +74,7 @@
                                 
                             </div>
                             <hr>
-                            <h1 class="h4 text-gray-900 mb-4">About You</h1>
+                            <h1 class="h4 text-gray-900 mb-4" style="color:#001C4B;font-weight: 700;">About You</h1>
                             <div class="form-row">
                                 <div class="form-group col-md-7">
                                     {{personaldescform.Job_title}}
@@ -88,7 +88,7 @@
                             </div>
 
                             <hr>
-                            <h1 class="h4 text-gray-900 mb-4">Education</h1>
+                            <h1 class="h4 text-gray-900 mb-4" style="color:#001C4B;font-weight: 700;">Education</h1>
                             {{ formset.management_form }}
                             {%for eduinfo in formset %}
                             <div class="education">
@@ -121,14 +121,14 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            <button type="button" class="btn btn-sm btn-success add-form-row"
+                            <button type="button" class="btn btn-sm add-form-row" style="background-color: #001C4B;color:white;"
                                     id="{{ formset.prefix }}">
                                 <i class="fas fa-plus"></i> Add Education
                             </button>
                             <hr>
 
                             <hr>
-                            <h1 class="h4 text-gray-900 mb-4">Working Experience </h1>
+                            <h1 class="h4 text-gray-900 mb-4" style="color:#001C4B;font-weight: 700;">Working Experience </h1>
                             {{ experienceform.management_form }}
                             {% for experience in experienceform%}
                             <div class="experience">
@@ -165,12 +165,12 @@
                             </div>
                             {% endfor %}
 
-                            <button type="button" class="btn btn-sm btn-success add-form-row"
+                            <button type="button" class="btn btn-sm  add-form-row" style="background-color: #001C4B;color:white;"
                                     id="{{ experienceform.prefix }}">
                                 <i class="fas fa-plus"></i> Add Experience
                             </button>
                             <hr>
-                            <h1 class="h4 text-gray-900 mb-4">Skills</h1>
+                            <h1 class="h4 text-gray-900 mb-4" style="color:#001C4B;font-weight: 700;">Skills</h1>
                             {{ skillform.management_form }}
                             {% for skills in skillform %}
                             <div class="skill">
@@ -185,13 +185,13 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            <button type="button" class="btn btn-sm btn-success add-form-row"
+                            <button type="button" class="btn btn-sm  add-form-row" style="background-color: #001C4B;color:white;"
                                     id="{{ skillform.prefix }}">
                                 <i class="fas fa-plus"></i> Add Skills
                             </button>
                             <hr>
 
-                            <h1 class="h4 text-gray-900 mb-4">Certificates:</h1>
+                            <h1 class="h4 text-gray-900 mb-4" style="color:#001C4B;font-weight: 700;">Certificates</h1>
                             {{ certificateform.management_form }}
                             {% for certicate in certificateform%}
                             <div class="certificate">
@@ -211,12 +211,12 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            <button type="button" class="btn btn-sm btn-success add-form-row"
+                            <button type="button" class="btn btn-sm  add-form-row" style="background-color: #001C4B;color:white;"
                                     id="{{ certificateform.prefix }}">
                                 <i class="fas fa-plus"></i> Add Experience
                             </button>
                             <hr>
-                            <h1 class="h4 text-gray-900 mb-4">Language</h1>
+                            <h1 class="h4 text-gray-900 mb-4" style="color:#001C4B;font-weight: 700;">Language</h1>
 
                             <div class="form-row">
                                 {{ languageform.management_form }}
@@ -234,14 +234,14 @@
                                 </div>
                                 {% endfor %}
                                 <div class="form-group col-md-4">
-                                    <button type="button" class="btn btn-sm btn-success add-form-row"
+                                    <button type="button" class="btn btn-sm  add-form-row" style="background-color: #001C4B;color:white;"
                                             id="{{ languageform.prefix }}">
                                         <i class="fas fa-plus"></i> Add Experience
                                     </button>
                                 </div>
                             </div>
                             <hr>
-                            <h1 class="h4 text-gray-900 mb-4">Others</h1>
+                            <h1 class="h4 text-gray-900 mb-4" style="color:#001C4B;font-weight: 700;">Others</h1>
                             {{ others.management_form }}
                             {% for other in others %}
                             <div class="others">
@@ -265,25 +265,25 @@
                             {% endfor %}
 
                             <div class="form-group col-md-4">
-                                <button type="button" class="btn btn-sm btn-success add-form-row"
+                                <button type="button" class="btn btn-sm  add-form-row" style="background-color: #001C4B;color:white;"
                                         id="{{ others.prefix }}">
                                     <i class="fas fa-plus"></i> Add More
                                 </button>
                             </div>
-                            <input type="submit" class="btn btn-success" name="submit" >
+                            <center><input type="submit" class="btn btn-success" name="submit" ></center>
                             <!--     <button type="submit" class="btn btn-success"><i class="fas fa-file-alt"></i> Create Resume </button>-->
                         </form>
                         <hr>
                     </div>
                 </div>
-                <div class="col-lg-5 d-none d-lg-block">
+                <div class="col-lg-5 d-none d-lg-block" >
                     <div class="p-5">
-                        <div class="text-center">
-                         <h1 class="h4 text-gray-900 mb-4">Templates </h1>
-                            <div class="row">
+                        <div class="text-center" >
+                         <h1 class="h4 text-gray-900 mb-4" style="color:#001C4B;font-weight: 700;">TEMPLATES</h1>
+                            <div class="row" >
                             {%for temp in templates %} 
-                                <div class="col-lg-6 mb-4"> 
-                                <div class="card  border-left-warning bg-info text-white shadow">
+                                <div class="col-lg-6 mb-4" > 
+                                <div class="card  border-left-warning bg-info text-white shadow" >
                                       <img style="height:300px; width:100%;" src= "{{temp.image.url}}"> 
                                       {{temp.template}}
                                 </div>
