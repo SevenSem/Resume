@@ -76,9 +76,11 @@ def prediction(request):
     # test_list.append(x)
 
     results = [data for data in imp_word if any(i in data for i in test_list)]
-    words_counts = [data for data in words_count if any(i in data for i in test_list)]
+
+    words_counts = [data for data in imp_word if any(i in data for i in test_list)]
 
     print(words_counts)
+    print("res",results)
     def drawChart():
         datas = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
@@ -86,9 +88,26 @@ def prediction(request):
         ['Eat', 2],
         ])
         return draw
-
+    key = []
+    value = []
+    if results:    
+        for i in results:
+            x =int(i[1]*1000)
+            print(x)
+            value.append(x)
+        print(value)
+    
+    if results:    
+        for i in results:
+            x =i[0]
+            key.append(x)
+        print(key)
+    print(key[0])
     data = {
         'data': results,
+        'key' : key,
+        'value' : value,
+        'bestkey' : key[0],
         'keywords' : test_list,
         'file_url': epdf,
         'avg' : PersonalityData.objects.filter(user__username= request.user).order_by('-id')[:1],

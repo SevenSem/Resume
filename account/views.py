@@ -51,7 +51,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return render(request,'pages/index.html')
+            return redirect('dashboard')
         else:
             messages.info(request, "Wrong username and password")
             return redirect('login')
