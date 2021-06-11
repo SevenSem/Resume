@@ -126,7 +126,7 @@ def resumeForm(request):
             except IntegrityError:
                 print('error')
 
-            return redirect('templates', personalinfo.pk)
+            return redirect('templates1', personalinfo.pk)
 
     data = {
         'form': personalform,
@@ -233,7 +233,7 @@ def templatesdata(id):
         'skilldata': Skills.objects.filter(personalinfo__id=id),
         'languagedata': Language.objects.filter(personalinfo__id=id),
         'personaldesc': PersonalDescription.objects.get(personalinfo__id=id),
-        'othersinfo': Others.objects.get(personalinfo__id=id),
+        'othersinfo': Others.objects.filter(personalinfo__id=id),
     }
     return data
 
