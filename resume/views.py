@@ -126,7 +126,7 @@ def resumeForm(request):
             except IntegrityError:
                 print('error')
 
-            return redirect('templates1', personalinfo.pk)
+            return redirect('dashboard')
 
     data = {
         'form': personalform,
@@ -288,4 +288,4 @@ def chart(request):
 class resumeDeleteView(DeleteView):
     template_name = 'pages/confirmdelete.html'
     model = models.PersonalInfo
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('dashboard')

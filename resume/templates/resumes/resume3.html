@@ -1,91 +1,129 @@
+{% extends 'master/master.html' %}
+{% block content %}
+{% load static %}
 <!DOCTYPE html>
- {% load static %}
+{% load static %}
 <html>
+
 <head>
 	<title>{{personalinfodata.firstname | upper}} resume</title>
 	<!-- Template 2 -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
-<style>
-
-.image-size{
-  object-fit: cover;
-  object-position: -20% 0;
-  width: 300px;
-  height: 337px;
-}
-</style>
+	<style>
+		.image-size {
+			object-fit: cover;
+			object-position: -20% 0;
+			width: 300px;
+			height: 337px;
+		}
+	</style>
 </head>
-<body bgcolor="#D5D8DC">
-<form>
-<input type="submit" VALUE="Print" ONCLICK="window.print()">
-</form>
-	<table width="700px" height="800px" align="center">
-		<tr>
-			<td width="200px" bgcolor="1c2833" style="color:white; padding: 20px">
-			{%if personalinfodata.image%}
-				<img class="image-size" src="{{personalinfodata.image.url}}" style="border-radius:50%;  width:160px; height:150px"; >
-				
-				{%endif%}
-				<h1>Personal details</h1> <hr>
 
-				<p><b>Name:</b></br>
-					{{personalinfodata.firstname | upper}} {{personalinfodata.lastname | upper}}<br><br>
-					<b>Address:</b> <br>
-					{{personalinfodata.state}} <br>{{personalinfodata.country}} <br><br>
+<body style="background-color:#D5D8DC;">
+	<form>
+		<!-- <input type="submit" VALUE="Print" ONCLICK="window.print()"> -->
+		<a href="javascript:void(0);" onclick="printPageArea('inner')">
+				<center><button style="height:50px;width:150px;background-color:#001C4B;color:white;font-weight:bold;">
+						<i class="fas fa-download" style="color:#fff"></i>	
+					DOWNLOAD RESUME</button></center></a>
+	</form>
+	<br>
+	<div id="inner">
+		<table width="700px" height="800px" align="center">
+			<tr>
+				<td width="200px"  style="color:white; padding: 20px;background-color: #1c2833;">
+					{%if personalinfodata.image%}
+					<img class="image-size" src="{{personalinfodata.image.url}}"
+						style="border-radius:50%;  width:160px; height:150px" ;>
 
-					<b>Phone number:</b><br>
-					{{personalinfodata.phone}}<br><br>
+					{%endif%}
+					<h1>Personal details</h1>
+					<hr>
 
-					<b>Email Address:</b> <br>
-					{{personalinfodata.email}} <br> <br>
+					<p><b>Name:</b></br>
+						{{personalinfodata.firstname | upper}} {{personalinfodata.lastname | upper}}<br><br>
+						<b>Address:</b> <br>
+						{{personalinfodata.state}} <br>{{personalinfodata.country}} <br><br>
 
-				<b>Github:</b> <br>
-				alizakhadkagithub.com<br><br>
+						<b>Phone number:</b><br>
+						{{personalinfodata.phone}}<br><br>
 
-				<b>linkedin:</b><br>
-				linkedin.com/in/aliza.khadka<br><br>
+						<b>Email Address:</b> <br>
+						{{personalinfodata.email}} <br> <br>
 
-				<b>twitter:</b><br>
-				aliza-khadka
-				</p>
-				<div class= "line-height: normal;">
-				<b>Language:</b>
-					{% for languages in languagedata %}
+						<b>Github:</b> <br>
+						alizakhadkagithub.com<br><br>
+
+						<b>linkedin:</b><br>
+						linkedin.com/in/aliza.khadka<br><br>
+
+						<b>twitter:</b><br>
+						aliza-khadka
+					</p>
+					<div class="line-height: normal;">
+						<b>Language:</b>
+						{% for languages in languagedata %}
 						<li>{{languages.language}}</li>
-					{% endfor %}
-				</div>
-				
-			</td>
-			<td width="500px" bgcolor="#FDFEFE" style="padding:20px">
-			<h1>{{personalinfodata.firstname | upper}} {{personalinfodata.lastname | upper}}</h1><hr>
-			<p>{{personaldesc.about}} </p>
-				<h2>Work experience</h2><hr>
-				{% for experience in experienceinfodata %}
+						{% endfor %}
+					</div>
+
+				</td>
+				<td width="500px" bgcolor="#FDFEFE" style="padding:20px">
+					<h1>{{personalinfodata.firstname | upper}} {{personalinfodata.lastname | upper}}</h1>
+					<hr>
+					<p>{{personaldesc.about}} </p>
+					<h2>Work experience</h2>
+					<hr>
+					{% for experience in experienceinfodata %}
 					<h3>{{experience.title}}</h3>
 					<h5>{{experience.company}} [{{experience.startingDate}} - {{experience.endingDate}}]</h5>
 					<p>{{experience.experienceInfo}}</p>
-				{% endfor %}
-				<h2>Skills</h2><hr>
-				{% for skills in skilldata %}
+					{% endfor %}
+					<h2>Skills</h2>
+					<hr>
+					{% for skills in skilldata %}
 					<p>{{skills.skill}}</p>
-				{% endfor %}
-				<h2>Education</h2><hr>
-				<!-- <h3>Bachelor</h3> -->
-				{% for education in educationalinfodata %}
-				<p><b>{{education.institution}}</b></p>
-				<p><b>{{education.program}} [{{education.edate1}} - {{education.edate2}}]</b></p>
-				{% endfor %}
-
-			
-			<h2>Certifications</h2><hr>
-			<p>Django framework (IT training Nepal)</p>
+					{% endfor %}
+					<h2>Education</h2>
+					<hr>
+					<!-- <h3>Bachelor</h3> -->
+					{% for education in educationalinfodata %}
+					<p><b>{{education.institution}}</b></p>
+					<p><b>{{education.program}} [{{education.edate1}} - {{education.edate2}}]</b></p>
+					{% endfor %}
 
 
-			<h2>{{othersinfo.title}}</h2><hr>
-			<p>{{othersinfo.introduction}}</p>
-			</td>
-		</tr>
-	</table>
-	
+					<h2>Certifications</h2>
+					<hr>
+					<p>Django framework (IT training Nepal)</p>
+
+
+					<h2>{{othersinfo.title}}</h2>
+					<hr>
+					<p>{{othersinfo.introduction}}</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<script>
+		function printPageArea(inner) {
+			var printContent = document.getElementById(inner);
+			var WinPrint = window.open('', '', 'width=900,height=650');
+			WinPrint.document.write(printContent.innerHTML);
+			WinPrint.document.close();
+			WinPrint.focus();
+			WinPrint.print();
+			WinPrint.close();
+		}
+	</script>
+
 </body>
+
 </html>
+
+
+{% endblock %}
