@@ -65,7 +65,7 @@
 			{%if data.type_o > 50 %}
 				<p style="color:black;">&bull;&nbsp;You are more open to new experience and have a love of learning,
 				creativity ,arts and loves to interact with new people.</p>
-			{%elif data.type_o = 50 %}
+			{%elif data.type_o == 50 %}
 			<p style="color:black;">&bull;&nbsp;You may stick to the same schedule but you are 
 				more creative and artistic in nature. 
 			</p>
@@ -82,7 +82,7 @@
 				determined to purse your
 				goals.</p>
 				creativity ,arts and loves to interact with new people.</p>
-			{%elif data.type_c = 50 %}
+			{%elif data.type_c == 50 %}
 			<p style="color:black;">&bull;&nbsp;You make take impulsive decisions 
 				but you have leadership quality to achieve your dream.. 
 			</p>
@@ -97,7 +97,7 @@
 				around new people and
 				interact with them .You are
 				often "life of the party" .</p>
-			{%elif data.type_e = 50 %}
+			{%elif data.type_e == 50 %}
 			<p style="color:black;">&bull;&nbsp;you seems to be a social and 
 					thoughtful persons. you love to make friends and feel comfortable around them. 
 			</p>
@@ -114,7 +114,7 @@
 				to your friends and loved ones,
 				as well as sympathetic to the
 				plights of strangers.</p>
-			{%elif data.type_a = 50 %}
+			{%elif data.type_a == 50 %}
 				<p style="color:black;">&bull;&nbsp;You are affectionate to your 
 					friends and loved one but more sarcatics and impolite in nature.
 				</p>
@@ -133,7 +133,7 @@
 				angered, and seems to be self-
 				conscious and unsure of
 				themselves.</p>
-			{%elif data.type_n= 50 %}
+			{%elif data.type_n == 50 %}
 				<p style="color:black;">&bull;&nbsp;You are quite confident and adventourous but 
 					seems to be self conscious..
 				</p>
@@ -210,12 +210,13 @@
 		<script>
 			function printPageArea(inner) {
 				var printContent = document.getElementById(inner);
-				var WinPrint = window.open('', '', 'width=1000,height=650');
+				var WinPrint = window.open('width=1000,height=650');
 				WinPrint.document.write(printContent.innerHTML);
 				WinPrint.document.close();
 				WinPrint.focus();
 				WinPrint.print();
 				WinPrint.close();
+				
 			}
 		</script>
 </div>

@@ -112,7 +112,7 @@
 	<script>
 		function printPageArea(inner) {
 			var printContent = document.getElementById(inner);
-			var WinPrint = window.open('', '', 'width=900,height=650');
+			var WinPrint = window.open('scrollbars=1,resizable=1,width=1000,height=580,left=0, top=0');
 			WinPrint.document.write(printContent.innerHTML);
 			WinPrint.document.close();
 			WinPrint.focus();

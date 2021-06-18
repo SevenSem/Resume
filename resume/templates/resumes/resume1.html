@@ -207,7 +207,7 @@
         <a href="javascript:void(0);" onclick="printPageArea('inner')" >
         <center><button style="height:40px;width:170px;background-color:#001C4B;color:white;font-weight:bold;">
             <i class="fas fa-download" style="color:#fff"></i>
-          DOWNLOAD RESUME</button></center></a>
+          DOWNLOAD- RESUME</button></center></a>
       </form>
   <div class="container">
     
@@ -556,7 +556,7 @@
   <script>
     function printPageArea(inner) {
       var printContent = document.getElementById(inner);
-      var WinPrint = window.open('', '', 'width=1000,height=650');
+      var WinPrint = window.open('scrollbars=1,resizable=1,width=1000,height=580,left=0, top=0');
       WinPrint.document.write(printContent.innerHTML);
       WinPrint.document.close();
       WinPrint.focus();
