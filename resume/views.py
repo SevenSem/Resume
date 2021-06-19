@@ -223,6 +223,13 @@ def templates2(request, id):
         return redirect('resumeform')
     return render(request, 'resumes/resume2.html', data)
 
+def templates5(request, id):
+    if request.user.is_authenticated:
+        data = templatesdata(id)
+    else:
+        return redirect('resumeform')
+    return render(request, 'resumes/resume5.html', data)
+
 
 def templatesdata(id):
     data = {

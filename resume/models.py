@@ -61,6 +61,9 @@ class ExperienceInfo(models.Model):
     def __str__(self):
         return self.company
 
+    def date(self):
+        pass 
+
 
 class Skills(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
