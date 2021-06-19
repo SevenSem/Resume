@@ -213,7 +213,7 @@ def templates1(request, id):
         data = templatesdata(id)
     else:
         return redirect('resumeform1')
-    return render(request, 'resumes/resume3.html', data)
+    return render(request, 'resumes/resume2.html', data)
 
 
 def templates2(request, id):
@@ -221,7 +221,15 @@ def templates2(request, id):
         data = templatesdata(id)
     else:
         return redirect('resumeform')
-    return render(request, 'resumes/resume2.html', data)
+    return render(request, 'resumes/resume3.html', data)
+
+def templates4(request, id):
+    if request.user.is_authenticated:
+        data = templatesdata(id)
+    else:
+        return redirect('resumeform')
+    return render(request, 'resumes/resume4.html', data)
+
 
 def templates5(request, id):
     if request.user.is_authenticated:
