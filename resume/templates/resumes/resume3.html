@@ -54,15 +54,23 @@
 
 						<b>Email Address:</b> <br>
 						{{personalinfodata.email}} <br> <br>
-
+						{% if personalinfodata.github %}
 						<b>Github:</b> <br>
-						alizakhadkagithub.com<br><br>
-
+						{{personalinfodata.github}} <br> <br>
+						{%endif%}
+						{% if personalinfodata.linkedin %}
 						<b>linkedin:</b><br>
-						linkedin.com/in/aliza.khadka<br><br>
-
-						<b>twitter:</b><br>
-						aliza-khadka
+						{{personalinfodata.linkedin}} <br> <br>
+            {%endif%}
+						{% if personalinfodata.twitter %}
+						<b>Twitter:</b><br>
+						{{personalinfodata.twitter}} <br> <br>
+            {%endif%}
+				
+						{% if personalinfodata.facebook %}
+		        <b>Facebook:</b><br>
+						{{personalinfodata.facebook}} <br> <br>
+            {%endif%}
 					</p>
 					<div class="line-height: normal;">
 						<b>Language:</b>
