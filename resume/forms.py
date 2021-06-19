@@ -10,7 +10,7 @@ class PersonalInfoForm(forms.ModelForm):
             attrs={'required': 'required', 'class': "form-check-input", 'type': "radio"})
                                    )
 
-        fields = ['firstname', 'middlename', 'lastname', 'email', 'dob', 'gender', 'phone', 'country', 'state', 'city','image', 'template']
+        fields = ['firstname', 'middlename', 'lastname', 'email', 'dob', 'gender', 'phone', 'country', 'state', 'city','image', 'template','facebook','twitter', 'github','linkedin','youtube']
         widgets = {
 
             'firstname': forms.TextInput(
@@ -31,7 +31,21 @@ class PersonalInfoForm(forms.ModelForm):
                 attrs={'class': 'form-control', 'required': 'required', 'placeholder': "State"}),
             'city': forms.TextInput(
                 attrs={'class': 'form-control', 'required': 'required', 'placeholder': "city"}),
-            # 'gender':forms.
+            
+            'facebook': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': "facebook"}),
+            
+            'twitter': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': "twitter"}),
+            
+            'github': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': "github"}),
+            
+            'youtube': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': "youtube"}),
+
+            'linkedin': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': "linkedin"}),
         }
 
 
