@@ -32,6 +32,12 @@ class PersonalInfo(models.Model):
     city = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images', blank=True)
+    
+    facebook = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    github = models.URLField(blank=True, null=True)
+    youtube = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.firstname
@@ -105,3 +111,4 @@ class Messagebox(models.Model):
 
     class Meta:
         ordering = ['-created_date' ]
+
