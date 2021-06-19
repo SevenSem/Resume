@@ -146,7 +146,7 @@ class ResumeUpdate(UpdateView):
     model = models.PersonalInfo
     form_class = forms.PersonalInfoForm
     template_name = 'form/testform.html'
-    success_url=reverse_lazy('home')
+    success_url=reverse_lazy('dashboard')
 
     def get_context_data(self, **kwargs):
         data = super(ResumeUpdate, self).get_context_data(**kwargs)
