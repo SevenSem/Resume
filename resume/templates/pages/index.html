@@ -143,6 +143,10 @@
                    <a class="nav-link" href="{%url 'templates1' sdata.id %}">
                 {% elif sdata.template.id == 3 %}
                     <a class="nav-link" href="{%url 'templates2' sdata.id %}">
+                {% elif sdata.template.id == 4 %}
+                    <a class="nav-link" href="{%url 'templates4' sdata.id %}">
+                {% elif sdata.template.id == 5 %}
+                    <a class="nav-link" href="{%url 'templates5' sdata.id %}">
                 {% else %}
                     <a class="nav-link" href="{%url 'templates' sdata.id %}">
                 {%endif%}
@@ -153,6 +157,8 @@
                                     <div class="col mr-2">
                                         {% if sdata.image %}
                                         <div><center><img  width="50" height="60" style="border-radius: 50%;"  src="{{sdata.image.url}}" alt="img"></center></div><br>
+                                        {%else%}
+                                        <div><center><img  width="50" height="50" style="border-radius: 50%;"  src="{% static 'assets/img/default.png' %}" alt="img"></center></div><br>
                                         {% endif %}
                                        <center><div class="text-white-100 small" style="color:#001C4B;">
                                             <h5><b>{{sdata.firstname | upper}} {{sdata.lastname | upper}}</b></h5>

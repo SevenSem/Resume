@@ -33,7 +33,7 @@ def prediction(request):
 
     print(texts)
 
-    print(texts)
+
     
     paragraph = texts
     words = get_words(paragraph)
@@ -58,11 +58,21 @@ def prediction(request):
     tfidf = {s:(tf_words[s]*idf_words[s]) for s in words}
 
     imp_word = sorted(tfidf.items(), key = lambda kv:(kv[1], kv[0]), reverse = True)
+    print('*'*30)
+    print(imp_word)
+    print('+'*100)
     print('')
     print('-'*30)
 
     keywords_test=  UploadCv.objects.filter(cv_user=request.user).order_by("-id")[0]
     keyword = keywords_test.keywords
+    stfidf = {s:(tf_sentences[s]*idf_sentences[s]) for s in sentences}
+    imp_sentences = sorted(stfidf.items(), key = lambda kv:(kv[1], kv[0]), reverse = True)
+    print('*'*30)
+    print(imp_sentences)
+    print('+'*100)
+
+
 
     #converting string into list, using string.split 
     """ here keyword is string fetched from database, we need it in string so we convert it"""
@@ -76,9 +86,11 @@ def prediction(request):
     # test_list.append(x)
 
     results = [data for data in imp_word if any(i in data for i in test_list)]
-    words_counts = [data for data in words_count if any(i in data for i in test_list)]
+
+    words_counts = [data for data in imp_word if any(i in data for i in test_list)]
 
     print(words_counts)
+    print("res",results)
     def drawChart():
         datas = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
@@ -86,9 +98,26 @@ def prediction(request):
         ['Eat', 2],
         ])
         return draw
-
+    key = []
+    value = []
+    if results:    
+        for i in results:
+            x =int(i[1]*1000)
+            print(x)
+            value.append(x)
+        print(value)
+    
+    if results:    
+        for i in results:
+            x =i[0]
+            key.append(x)
+        print(key)
+    print(key[0])
     data = {
         'data': results,
+        'key' : key,
+        'value' : value,
+        'bestkey' : key[0],
         'keywords' : test_list,
         'file_url': epdf,
         'avg' : PersonalityData.objects.filter(user__username= request.user).order_by('-id')[:1],

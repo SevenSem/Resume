@@ -126,7 +126,7 @@ def resumeForm(request):
             except IntegrityError:
                 print('error')
 
-            return redirect('templates', personalinfo.pk)
+            return redirect('dashboard')
 
     data = {
         'form': personalform,
@@ -146,7 +146,7 @@ class ResumeUpdate(UpdateView):
     model = models.PersonalInfo
     form_class = forms.PersonalInfoForm
     template_name = 'form/testform.html'
-    success_url=reverse_lazy('home')
+    success_url=reverse_lazy('dashboard')
 
     def get_context_data(self, **kwargs):
         data = super(ResumeUpdate, self).get_context_data(**kwargs)
@@ -213,7 +213,7 @@ def templates1(request, id):
         data = templatesdata(id)
     else:
         return redirect('resumeform1')
-    return render(request, 'resumes/resume3.html', data)
+    return render(request, 'resumes/resume2.html', data)
 
 
 def templates2(request, id):
@@ -221,7 +221,22 @@ def templates2(request, id):
         data = templatesdata(id)
     else:
         return redirect('resumeform')
-    return render(request, 'resumes/resume2.html', data)
+    return render(request, 'resumes/resume3.html', data)
+
+def templates4(request, id):
+    if request.user.is_authenticated:
+        data = templatesdata(id)
+    else:
+        return redirect('resumeform')
+    return render(request, 'resumes/resume4.html', data)
+
+
+def templates5(request, id):
+    if request.user.is_authenticated:
+        data = templatesdata(id)
+    else:
+        return redirect('resumeform')
+    return render(request, 'resumes/resume5.html', data)
 
 
 def templatesdata(id):
@@ -233,7 +248,7 @@ def templatesdata(id):
         'skilldata': Skills.objects.filter(personalinfo__id=id),
         'languagedata': Language.objects.filter(personalinfo__id=id),
         'personaldesc': PersonalDescription.objects.get(personalinfo__id=id),
-        'othersinfo': Others.objects.get(personalinfo__id=id),
+        'othersinfo': Others.objects.filter(personalinfo__id=id),
     }
     return data
 
@@ -288,4 +303,4 @@ def chart(request):
 class resumeDeleteView(DeleteView):
     template_name = 'pages/confirmdelete.html'
     model = models.PersonalInfo
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('dashboard')

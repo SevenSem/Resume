@@ -13,6 +13,11 @@ urlpatterns = [
 
     path('templates1/<id>', views.templates1, name='templates1'),
     path('templates2/<id>', views.templates2, name='templates2'),
+    path('templates4/<id>', views.templates4, name='templates4'),
+
+    path('templates5/<id>', views.templates5, name='templates5'),
+
+
     path('pdf_view/<id>', views.ViewPDF.as_view(), name="pdf_view"),
     path('chart', views.chart, name='chart'),
     path('prediction/', include('prediction.urls'), name="prediction"),

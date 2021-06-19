@@ -1,52 +1,223 @@
-<html>
-    <head>
-        <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
-    <!--Chart js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    </head>
-    <body>
-    {{data}}
-        <canvas id="myChart" width="400" height="400"></canvas>
-<script>
+{% extends 'master/master.html' %}
+{% block content %}
+{% load static %}
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [{% for name in data %}'{{name}}',{% endfor %}],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+	<h1 class="h3 mb-0 " style="color: #001C4B;font-weight: bold;">PERSONALITY TEST RESULT</h1>
+	<!-- <button class="download">Download</button> -->
+	<a href="javascript:void(0);" onclick="printPageArea('inner')">
+		<center><button style="height:50px;width:200px;background-color:#001C4B;color:white;font-weight:bold;">
+				<i class="fas fa-download" style="color:#fff"></i>	
+			DOWNLOAD PREDICTION RESULT</button></center>
+	</a>
+</div>
+<div id="inner">
+	<div class="container-fluid">
+		{%for data in avg %}
+		<hr>
+		<h3 style="color:black;"><strong>Your Predicted Score !!!</strong> </h3>
+		<label style="float: left;padding-right: 10px;width: 147px;color:black;"><strong>Openness </strong></label>
+		<div class="progress" style="height: 30px;">
+			<div class="progress-bar bg-danger " role="progressbar" aria-valuenow="75" aria-valuemin="0"
+				aria-valuemax="100" style="width: {{data.type_o}}%">
+				<h4>{{data.type_o}}% </h4>
+			</div>
+		</div><br>
+		<!-- progress-bar progress-bar-striped bg-primary progress-bar-animated -->
+		<label style="float: left;padding-right: 10px;width: 147px;color:black;"><strong>Conscientiousness
+			</strong></label>
+		<div class="progress" style="height: 30px;">
+			<div class="progress-bar  bg-primary " role="progressbar" aria-valuenow="75" aria-valuemin="0"
+				aria-valuemax="100" style="width: {{data.type_c}}%">
+				<h4>{{data.type_c}}% </h4>
+			</div>
+		</div><br>
+		<label style="float: left;padding-right: 10px;width: 147px;color:black;"><strong>Extroversion </strong></label>
+		<div class="progress" style="height: 30px;">
+			<div class="progress-bar  bg-success  " role="progressbar" aria-valuenow="75" aria-valuemin="0"
+				aria-valuemax="100" style="width: {{data.type_e}}%">
+				<h4>{{data.type_e}}% </h4>
+			</div>
+		</div><br>
+		<label style="float: left;padding-right: 10px;width: 147px;color:black;"><strong>Agreeableness </strong></label>
+		<div class="progress" style="height: 30px;">
+			<div class="progress-bar  bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+				aria-valuemax="100" style="width: {{data.type_a}}%">
+				<h4>{{data.type_a}}% </h4>
+			</div>
+		</div><br>
+		<label style="float: left;padding-right: 10px;width: 147px;color:black;"><strong>Neuroticism </strong></label>
+		<div class="progress" style="height: 30px;">
+			<div class="progress-bar  bg-info " role="progressbar" aria-valuenow="75" aria-valuemin="0"
+				aria-valuemax="100" style="width: {{data.type_n}}%">
+				<h4>{{data.type_n}}% </h4>
+			</div>
+		</div><br>
+	</div>
+	<hr>
+	<div id="downcontent">
+		<div class="container">
+			<h3 style="color:black;"><strong>Your Predicted Personality !!!</strong> </h3>
+
+			{% comment %} and data.type_c >= 50 and data.type_e >= 50 and data.type_a >= 50 and data.type_n >= 50
+			{% endcomment %}
+			{%if data.type_o > 50 %}
+				<p style="color:black;">&bull;&nbsp;You are more open to new experience and have a love of learning,
+				creativity ,arts and loves to interact with new people.</p>
+			{%elif data.type_o == 50 %}
+			<p style="color:black;">&bull;&nbsp;You may stick to the same schedule but you are 
+				more creative and artistic in nature. 
+			</p>
+			{%else%}
+			<p style="color:black;">
+					&bull;&nbsp;You tend to stick in daily routine rather than variety and be surrounded with the things
+				,people you know well and prefers less creativity task and entertainment.</p>
+			{%endif%}
+
+			{%if data.type_c > 50 %}
+			<p style="color:black;">&bull;&nbsp;You are likely to be more
+				successful in your career ,have
+				leadership skills and you are
+				determined to purse your
+				goals.</p>
+				creativity ,arts and loves to interact with new people.</p>
+			{%elif data.type_c == 50 %}
+			<p style="color:black;">&bull;&nbsp;You make take impulsive decisions 
+				but you have leadership quality to achieve your dream.. 
+			</p>
+			{%else%}
+			<p style="color:black;">
+					&bull;&nbsp;You are quite impulsive and
+				tends to procrastinate.</p>
+			{%endif%}
+
+			{%if data.type_e > 50 %}
+			<p style="color:black;">&bull;&nbsp;You seems to be comfortable
+				around new people and
+				interact with them .You are
+				often "life of the party" .</p>
+			{%elif data.type_e == 50 %}
+			<p style="color:black;">&bull;&nbsp;you seems to be a social and 
+					thoughtful persons. you love to make friends and feel comfortable around them. 
+			</p>
+			{%else%}
+			<p style="color:black;">
+					&bull;&nbsp;You seems to be quiet,reserved and thoughtful.</p>
+			{%endif%}
+
+			{%if data.type_a > 50 %}
+			<p style="color:black;">&bull;&nbsp;You tend to be well-liked,
+				respected, and sensitive to the
+				needs of others, have few
+				enemies and are affectionate
+				to your friends and loved ones,
+				as well as sympathetic to the
+				plights of strangers.</p>
+			{%elif data.type_a == 50 %}
+				<p style="color:black;">&bull;&nbsp;You are affectionate to your 
+					friends and loved one but more sarcatics and impolite in nature.
+				</p>
+			{%else%}
+			<p style="color:black;">
+					&bull;&nbsp;You are less likely to be
+				trusted as you may seems to
+				be sarcastic and impolite.</p>
+			{%endif%}
+			
+			{%if data.type_n > 50 %}
+			<p style="color:black;">&bull;&nbsp;You are generally prone to
+				anxiety, sadness, worry, and
+				low self-esteem. You may be
+				temperamental or easily
+				angered, and seems to be self-
+				conscious and unsure of
+				themselves.</p>
+			{%elif data.type_n == 50 %}
+				<p style="color:black;">&bull;&nbsp;You are quite confident and adventourous but 
+					seems to be self conscious..
+				</p>
+			{%else%}
+			<p style="color:black;">
+					&bull;&nbsp;You are confident ,brave,
+				sure of yourself and
+				adventurous.</p>
+			{%endif%}
+		</div>
+	</div>
+	{%endfor%}
+	<hr>
+
+	<H3 class="ml-4"> Final Graphical Representation of Prediction !!!</H3>
+	<div class="row">
+		<div class="col col-6">
+			<canvas id="myChart"></canvas>
+		</div>
+		<div class="col col-6">
+			<canvas id="myChart"></canvas>
+		</div>
+	</div>
+	<p>Basedyou are expert in {{bestkey}}
+
+
+		<script>
+			var ctx = document.getElementById('myChart').getContext('2d');
+			var myChart = new Chart(ctx, {
+				type: 'pie',
+				data: {
+					labels: [{% for name in key %}'{{name}}',{% endfor %}],
+			datasets: [{
+				label: '# of Votes',
+				data: [{% for v in value %}'{{v}}', {% endfor %}],
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)'
+				],
+					borderColor: [
+						'rgba(255, 99, 132, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(255, 159, 64, 1)'
+					],
+						borderWidth: 2
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true
+					}
+				}
+			}
 });
-</script>
-    </body>
-</html>
+		</script>
+
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<!-- <script>
+		$('.download').on('click', function () {
+			$('<a />').attr({
+				download: 'export.html',
+				href: "data:text/html," + $('#downcontent').html()
+			})[0].click()
+		});
+	</script> -->
+		<script>
+			function printPageArea(inner) {
+				var printContent = document.getElementById(inner);
+				var WinPrint = window.open('width=1000,height=650');
+				WinPrint.document.write(printContent.innerHTML);
+				WinPrint.document.close();
+				WinPrint.focus();
+				WinPrint.print();
+				WinPrint.close();
+				
+			}
+		</script>
+</div>
+{% endblock %}
