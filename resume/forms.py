@@ -1,6 +1,7 @@
 from django import forms
 
 from resume import models
+from django.utils.translation import gettext_lazy as _
 
 from django.forms.models import inlineformset_factory
 class PersonalInfoForm(forms.ModelForm):
@@ -49,6 +50,7 @@ class PersonalInfoForm(forms.ModelForm):
         }
 
 
+
 class EducationalForm(forms.ModelForm):
     class Meta:
         model = models.EducationalInfo
@@ -66,6 +68,13 @@ class EducationalForm(forms.ModelForm):
             'edate2': forms.TextInput(
                 attrs={'class': 'form-control ','type':"date",'placeholder': "Ending Date "}),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get("edate1")
+        end_date = cleaned_data.get("edate2")
+        if end_date < start_date:
+            raise forms.ValidationError("End date should be greater than start date.")
 
 
 class ExperienceForm(forms.ModelForm):
@@ -88,6 +97,14 @@ class ExperienceForm(forms.ModelForm):
             'experienceInfo': forms.Textarea(
                 attrs={'class': 'form-control', 'placeholder': "Enter Company"}),
         }
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get("startingDate")
+        end_date = cleaned_data.get("endingDate")
+        if end_date < start_date:
+            raise forms.ValidationError("End date should be greater than start date.")
+
 
 
 class SkillForm(forms.ModelForm):
