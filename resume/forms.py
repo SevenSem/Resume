@@ -49,13 +49,6 @@ class PersonalInfoForm(forms.ModelForm):
                 attrs={'class': 'form-control', 'placeholder': "linkedin"}),
         }
 
-        help_texts = {
-            'facebook': _('Facebook Url'),
-            'twitter': _('Rate per Day'),
-            'github': _('Rate per per Hour'),
-            'youtube': _('Phone Number'),
-            'linkedin': _('Phone Number'),
-        }
 
 
 class EducationalForm(forms.ModelForm):
