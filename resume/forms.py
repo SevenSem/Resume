@@ -1,6 +1,7 @@
 from django import forms
 
 from resume import models
+from django.utils.translation import gettext_lazy as _
 
 from django.forms.models import inlineformset_factory
 class PersonalInfoForm(forms.ModelForm):
@@ -10,7 +11,7 @@ class PersonalInfoForm(forms.ModelForm):
             attrs={'required': 'required', 'class': "form-check-input", 'type': "radio"})
                                    )
 
-        fields = ['firstname', 'middlename', 'lastname', 'email', 'dob', 'gender', 'phone', 'country', 'state', 'city','image', 'template']
+        fields = ['firstname', 'middlename', 'lastname', 'email', 'dob', 'gender', 'phone', 'country', 'state', 'city','image', 'template','facebook','twitter', 'github','linkedin','youtube']
         widgets = {
 
             'firstname': forms.TextInput(
@@ -31,8 +32,23 @@ class PersonalInfoForm(forms.ModelForm):
                 attrs={'class': 'form-control', 'required': 'required', 'placeholder': "State"}),
             'city': forms.TextInput(
                 attrs={'class': 'form-control', 'required': 'required', 'placeholder': "city"}),
-            # 'gender':forms.
+            
+            'facebook': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': "facebook"}),
+            
+            'twitter': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': "twitter"}),
+            
+            'github': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': "github"}),
+            
+            'youtube': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': "youtube"}),
+
+            'linkedin': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': "linkedin"}),
         }
+
 
 
 class EducationalForm(forms.ModelForm):
@@ -52,6 +68,13 @@ class EducationalForm(forms.ModelForm):
             'edate2': forms.TextInput(
                 attrs={'class': 'form-control ','type':"date",'placeholder': "Ending Date "}),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get("edate1")
+        end_date = cleaned_data.get("edate2")
+        if end_date < start_date:
+            raise forms.ValidationError("End date should be greater than start date.")
 
 
 class ExperienceForm(forms.ModelForm):
@@ -74,6 +97,14 @@ class ExperienceForm(forms.ModelForm):
             'experienceInfo': forms.Textarea(
                 attrs={'class': 'form-control', 'placeholder': "Enter Company"}),
         }
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get("startingDate")
+        end_date = cleaned_data.get("endingDate")
+        if end_date < start_date:
+            raise forms.ValidationError("End date should be greater than start date.")
+
 
 
 class SkillForm(forms.ModelForm):

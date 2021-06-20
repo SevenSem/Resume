@@ -19,19 +19,25 @@ class Templates(models.Model):
     
 
 class PersonalInfo(models.Model):
-    template = models.ForeignKey(Templates, on_delete=models.CASCADE,default=1)
-    firstname = models.CharField(max_length=100)
+    template = models.ForeignKey(Templates, on_delete=models.CASCADE,default=1, blank=True)
+    firstname = models.CharField(max_length=100, blank=True)
     middlename = models.CharField(max_length=255, blank=True)
-    lastname = models.CharField(max_length=100)
-    email = models.CharField(max_length=255)
-    dob = models.CharField(max_length=255)
-    gender = models.CharField(choices=GENDER_CHOICES, max_length=128)
-    phone = models.CharField(max_length=100)
-    country = models.CharField(max_length=255)
-    state = models.CharField(max_length=100)
-    city = models.CharField(max_length=255)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    lastname = models.CharField(max_length=100,blank=True, null=True)
+    email = models.CharField(max_length=255,blank=True, null=True)
+    dob = models.CharField(max_length=255,blank=True, null=True)
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=128,blank=True, null=True)
+    phone = models.CharField(max_length=100,blank=True, null=True)
+    country = models.CharField(max_length=255,blank=True, null=True)
+    state = models.CharField(max_length=100,blank=True, null=True)
+    city = models.CharField(max_length=255,blank=True, null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,blank=True, null=True)
     image = models.ImageField(upload_to='images', blank=True)
+    
+    facebook = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    github = models.URLField(blank=True, null=True)
+    youtube = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.firstname
@@ -60,6 +66,9 @@ class ExperienceInfo(models.Model):
 
     def __str__(self):
         return self.company
+
+    def date(self):
+        pass 
 
 
 class Skills(models.Model):
@@ -102,3 +111,4 @@ class Messagebox(models.Model):
 
     class Meta:
         ordering = ['-created_date' ]
+

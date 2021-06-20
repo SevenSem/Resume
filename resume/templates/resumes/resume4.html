@@ -1,377 +1,629 @@
+{% extends 'master/master.html' %}
+{% block content %}
 <!DOCTYPE html>
+{% load static %}
+
 <html>
-
 <head>
-    <title>resume3</title>
-    <input type="submit" VALUE="Download" ONCLICK="window.print()">
-
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css"
-        href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style type="text/css">
-        .grid-container {
-            display: grid;
-            grid-template-columns: 40% 60%;
-            grid-auto-rows: minmax(100px, auto);
-        }
-
-        .box1 {
-            background-color: #191910;
-        }
-
-        .box2 {
-            background-color: #d8d8d8;
-        }
-
-        img {
-            height: 300px;
-            width: 300px;
-            filter: grayscale(0, 8);
-            border-radius: #d8d8d8 solid 3px;
-            margin-top: 50px;
-            margin-left: 160px;
-        }
-
-        h1 {
-            color: #d8d8d8;
-            font-size: 40px;
-            font-weight: bold;
-            font-family: "Roboto";
-            text-align: center;
-        }
-
-        h4 {
-            color: #d8d8d8;
-            opacity: 0.7;
-            font-family: "Roboto";
-            text-transform: uppercase;
-            font-size: 15px;
-            text-align: center;
-        }
-
-        .box1 h5 {
-            color: #d8d8d8;
-            font-family: "Roboto";
-            text-transform: uppercase;
-            font-size: 17px;
-            text-align: center;
-        }
-
-        .profile-content {
-            height: 325px;
-            width: 325px;
-            margin-left: 150px;
-            grid-auto-flow: minmax(100px, auto);
-        }
-
-        p {
-            color: #d8d8d8;
-            font-family: "roboto";
-            font-size: 17px;
-            text-align: justify;
-        }
-
-        .contact {
-            margin-top: 10px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .box1 h3 {
-            margin: 100px;
-            color: #d8d8d8;
-            font-family: "Roboto";
-            margin-left: 120px;
-            text-transform: uppercase;
-        }
-
-        .contact-left p {
-            margin-left: 100px;
-            opacity: 0.8;
-        }
-
-        .contact-right p {
-            opacity: 0.8;
-            align-items: center;
-        }
-
-        .box2 h1 {
-            color: #191919;
-            text-align: left;
-            font-size: 30px;
-            margin-left: 70px;
-            text-transform: uppercase;
-            margin-top: 40px;
-            font-weight: lighter;
-            padding: 0;
-        }
-
-        hr {
-            width: 800px;
-            background-color: #191919;
-            height: 3px;
-            border: 0;
-        }
-
-        .content {
-            margin-top: 40px;
-        }
-
-        .box2 h2 {
-            color: #191919;
-            margin-top: 30px;
-            margin-left: 70px;
-            text-align: left;
-            font-size: 40px;
-            font-family: "roboto";
-            text-transform: uppercase;
-
-        }
-
-        .content h1 {
-            color: #191919;
-            margin-top: 0;
-            margin-left: 70px;
-            text-align: left;
-            font-size: 25px;
-            font-family: "roboto";
-            text-transform: uppercase;
-
-        }
-
-        .content h4 {
-            color: #191919;
-            text-transform: none;
-            text-align: left;
-            margin-left: 70px;
-            font-size: 16px;
-        }
-
-        .content p {
-            color: #191919;
-            text-align: left;
-            margin-left: 70px;
-            font-size: 13px;
-        }
-
-        .skills-content {
-            display: grid;
-            grid-template-columns: repeat(3, 3fr);
-            border: #191919;
-        }
-
-        .skills-content p {
-            color: #191919;
-            text-align: left;
-            margin-left: 70px;
-            font-size: 15px;
-
-        }
-
-        .dot {
-            height: 20px;
-            width: 20px;
-            border-radius: 50px;
-            background-color: #191919;
-            display: inline-block;
-            margin-top: 11px;
-        }
-
-        .dot-2 {
-            height: 19px;
-            width: 10px;
-            background-color: #d8d8d8;
-            display: inline-block;
-            border-radius: 50%;
-            border: 0.5px solid #191919;
-            margin-top: 11px;
-        }
-
-        .skills-3 {
-            margin-left: 0;
-        }
-
-        .language-content {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            border: #191919;
-        }
-
-        .language-content p {
-            color: #191919;
-            text-align: left;
-            margin-left: 70px;
-            font-size: 15px;
-        }
-
-        .checked {
-            color: gray;
-        }
-
-        .star {
-            margin-top: 15px;
-        }
-    </style>
+	<meta charset="utf-8">
+  <title>{{personalinfodata.firstname | upper}} {{personalinfodata.lastname | upper}}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
-
 <body>
-    <div class="grid-container">
-        <div class="box1">
-            <img src="anusa.jpg">
-            <h1>Anusha<br>
-                panta</h1>
-            <h4>Graphic Designer</h4>
-            <h5>PROFILE</h5>
-            <div class="profile-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.
-                </p>
-            </div>
-            <h3>Contact Me</h3>
-            <div class="contact">
-                <div class="contact-left">
-                    <p>Date of Birth:</p>
-                    <p>Address:</p>
-                    <p>Phone:</p>
-                    <p>Email:</p>
-                </div>
-                <div class="contact-right">
-                    <p>september 7, 1997</p>
-                    <p>thamel, kathmandu</p>
-                    <p>9841001122</p>
-                    <p>anushapanta@gmail.com</p>
-                </div>
-            </div>
-        </div>
+	{% comment %} <style> @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-        <div class="box2">
-            <h2>EXPERIENCE</h2>
-            <hr>
-            <div class="content">
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
 
-                <h1>Senior graphic Design -07-14-17/07-31-19</h1>
-                <h4>TATA company</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. </p>
-            </div>
-            <div class="content">
-                <h1>Senior software developer </h1>
-                <h4>Trinity company</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. </p><br>
-            </div>
+body{
+	background: #c4c4c4;
+	font-size: 14px;
+	line-height: 20px;
+}
 
-            <h2>EDUCATION</h2>
-            <hr>
-            <div class="content">
-                <h1>TRIBHUWAN UNIVERSITY</h1>
-                <h4>Trinity international college</h4>
-                <p>studied BSC.CSIT with good GPA </p>
-            </div>
-            <div class="content">
-                <h4>trinity COLLEGE</h4>
-                <p>Studied science with computer </p>
-            </div>
-            <div class="content">
-                <h4>Everest secondary school</h4>
-                <p>passed with good GPA </p><br>
-            </div>
-            <h2>SKILLS</h2>
-            <hr>
-            <div class="skills-content">
-                <div class="skill-1">
-                    <p>photoshop</p>
-                    <p>html & css</p>
-                    <p>Javascript</p>
-                    <p>Python</p>
-                    <p>PHP</p>
-                </div>
-                <div class="skill-2">
-                    <div class="circle">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                    <div class="circle">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot-2"></span>
-                        <span class="dot-2"></span>
-                    </div>
-                    <div class="circle">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                    <div class="circle">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot-2"></span>
-                        <span class="dot-2"></span>
-                    </div>
-                </div>
-                <div class="skill-3">
-                    <p style="font-weight: bold;">Other skills</p>
-                    <p>decision making</p>
-                    <p>communication</p>
-                    <p>hardworking</p>
+.resume_wrapper{
+	display: flex;
+	width: 800px;
+	margin: 50px auto;
+	background: #fff;
+	padding: 10px;
+}
 
-                </div>
-            </div>
-            <h2>Language</h2>
-            <hr>
-            <div class="language-content">
-                <div class="lang-1">
-                    <p>English</p>
-                    <p>French</p>
-                    <p>Nepali</p>
-                </div>
-                <div class="lang-2">
-                    <div class="star">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                    </div>
-                    <div class="star">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                    </div>
-                    <div class="star">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                    </div>
-                </div>
-            </div>
+.resume_wrapper .resume_left{
+	width: 35%;
+	background: #26252d;
+}
 
-        </div>
+.resume_wrapper .resume_left .resume_image{
+	width: 100%;
+}
+
+.resume_wrapper .resume_left .resume_image img{
+	width: 100%;
+	display: block;
+}
+
+.resume_wrapper .resume_title{
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 16px;
+	margin-bottom: 10px;
+	letter-spacing: 4px;
+}
+
+.resume_wrapper .resume_left .resume_info{
+	color: #84838b;
+}
+
+.resume_wrapper .resume_left .resume_bottom{
+	padding: 20px 30px;
+}
+
+.resume_wrapper .resume_item{
+	padding: 20px 0;
+	border-bottom: 1px solid #0175b2;
+}
+
+.resume_wrapper  .resume_item:last-child{
+	border-bottom: 0;
+}
+
+.resume_wrapper .resume_left .resume_namerole{
+	display: none;
+}
+
+.resume_wrapper .resume_namerole .name{
+	font-size: 20px;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 700;
+	margin-bottom: 5px;
+	letter-spacing: 4px;
+}
+
+.resume_wrapper .resume_left .resume_namerole .role{
+	color: #84838b;
+}
+
+.resume_wrapper .resume_left .resume_contact .resume_info:last-child{
+	 margin-top: 10px;
+}
+
+.resume_wrapper .resume_left .resume_contact .resume_subtitle{
+	color: #fff;
+	margin-bottom: 2px;
+}
+
+.resume_wrapper .resume_left .resume_skills .skills_list{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+.resume_wrapper .resume_left .resume_skills .skills_list .skills_bar p{
+	position: relative;
+	width: 125px;
+    height: 20px;
+    background: #fff;
+}
+
+.resume_wrapper .resume_left .resume_skills .skills_list .skills_bar p span{	
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #0175b2;
+	width: 100%;
+	height: 100%;
+}
+
+.resume_wrapper .resume_right{
+	width: 65%;
+	padding: 20px 40px;
+	color: #26252d;
+}
+
+.resume_wrapper .resume_right .resume_namerole .name{
+	color: #26252d;
+	font-size: 32px;
+}
+
+.resume_wrapper .resume_right .resume_namerole .role{
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.resume_wrapper .resume_right .resume_item .resume_title{
+	color: #26252d;
+}
+
+.resume_wrapper .resume_right .resume_data{
+	display: flex;
+}
+
+.resume_wrapper .resume_right .resume_data .year{
+	padding-right: 35px;
+	width: 115px;
+	position: relative;
+}
+
+.resume_wrapper .resume_right .resume_data .content{
+	padding-left: 35px;
+	margin-bottom: 20px;
+	width: calc(100% - 115px);
+}
+
+.resume_wrapper .resume_right .resume_data .year:before{
+	content: "";
+	position: absolute;
+	top: 5px;
+	right: 0;
+	width: 10px;
+	height: 10px;
+	background: #fff;
+	border: 1px solid #26252d;
+	border-radius: 50%;
+}
+
+.resume_wrapper .resume_right .resume_data .year:after{
+	content: "";
+    position: absolute;
+    top: 17px;
+    right: 4px;
+    width: 3px;
+    height: 90%;
+    background: #0175b2;
+}
+
+.resume_wrapper .resume_right .resume_data:last-child .year:after{
+	display: none;
+}
+
+.resume_wrapper .resume_right .resmue_interests .resume_info{
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+}
+
+.resume_wrapper .resume_right .resmue_interests .interests .int_icon{
+	font-size: 38px;
+	color: #0175b2;
+	margin-bottom: 10px;
+}
 
 
+@media screen and (max-width: 800px){
+	.resume_wrapper .resume_right .resume_namerole{
+		display: none;
+	}
+	.resume_wrapper .resume_left .resume_namerole{
+		display: block;
+	}
+	.resume_wrapper{
+		width: 95%;
+		margin: 10px auto;
+		flex-direction: column;
+	}
+	.resume_wrapper .resume_left,
+	.resume_wrapper .resume_right{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 424px){
+	.resume_wrapper .resume_right{
+		padding: 20px 30px;
+	}
+	.resume_wrapper .resume_right .resume_data{
+		flex-direction: column;
+	}
+	.resume_wrapper .resume_right .resume_data .year{
+		padding: 0;
+		margin-bottom: 5px;
+		width: 100%;
+		color: #0175b2;
+	}
+	.resume_wrapper .resume_right .resume_data .year:before,
+	.resume_wrapper .resume_right .resume_data .year:after{
+		display: none;
+	}
+	.resume_wrapper .resume_right .resume_data .content{
+		width: 100%;
+		padding: 0;
+	}
+	.resume_wrapper .resume_right .resmue_interests .interests .int_icon{
+		font-size: 24px;
+	}
+}</style>  {% endcomment %}
+<a  onclick="printPageArea('inner')">
+				<center><button style="height:50px;width:150px;background-color:#001C4B;color:white;font-weight:bold;">
+						<i class="fas fa-download" style="color:#fff"></i>	
+					DOWNLOAD RESUME</button></center></a>
+
+<div  id="inner">
+	<style> @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+body{
+	background: #c4c4c4;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.resume_wrapper{
+	display: flex;
+	width: 800px;
+	margin: 50px auto;
+	background: #fff;
+	padding: 10px;
+}
+
+.resume_wrapper .resume_left{
+	width: 35%;
+	background: #26252d;
+}
+
+.resume_wrapper .resume_left .resume_image{
+	width: 100%;
+}
+
+.resume_wrapper .resume_left .resume_image img{
+	width: 100%;
+	display: block;
+}
+
+.resume_wrapper .resume_title{
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 16px;
+	margin-bottom: 10px;
+	letter-spacing: 4px;
+}
+
+.resume_wrapper .resume_left .resume_info{
+	color: #84838b;
+}
+
+.resume_wrapper .resume_left .resume_bottom{
+	padding: 20px 30px;
+}
+
+.resume_wrapper .resume_item{
+	padding: 20px 0;
+	border-bottom: 1px solid #0175b2;
+}
+
+.resume_wrapper  .resume_item:last-child{
+	border-bottom: 0;
+}
+
+.resume_wrapper .resume_left .resume_namerole{
+	display: none;
+}
+
+.resume_wrapper .resume_namerole .name{
+	font-size: 20px;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 700;
+	margin-bottom: 5px;
+	letter-spacing: 4px;
+}
+
+.resume_wrapper .resume_left .resume_namerole .role{
+	color: #84838b;
+}
+
+.resume_wrapper .resume_left .resume_contact .resume_info:last-child{
+	 margin-top: 10px;
+}
+
+.resume_wrapper .resume_left .resume_contact .resume_subtitle{
+	color: #fff;
+	margin-bottom: 2px;
+}
+
+.resume_wrapper .resume_left .resume_skills .skills_list{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+.resume_wrapper .resume_left .resume_skills .skills_list .skills_bar p{
+	position: relative;
+	width: 125px;
+    height: 20px;
+    background: #fff;
+}
+
+.resume_wrapper .resume_left .resume_skills .skills_list .skills_bar p span{	
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #0175b2;
+	width: 100%;
+	height: 100%;
+}
+
+.resume_wrapper .resume_right{
+	width: 65%;
+	padding: 20px 40px;
+	color: #26252d;
+}
+
+.resume_wrapper .resume_right .resume_namerole .name{
+	color: #26252d;
+	font-size: 32px;
+}
+
+.resume_wrapper .resume_right .resume_namerole .role{
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.resume_wrapper .resume_right .resume_item .resume_title{
+	color: #26252d;
+}
+
+.resume_wrapper .resume_right .resume_data{
+	display: flex;
+}
+
+.resume_wrapper .resume_right .resume_data .year{
+	padding-right: 35px;
+	width: 115px;
+	position: relative;
+}
+
+.resume_wrapper .resume_right .resume_data .content{
+	padding-left: 35px;
+	margin-bottom: 20px;
+	width: calc(100% - 115px);
+}
+
+.resume_wrapper .resume_right .resume_data .year:before{
+	content: "";
+	position: absolute;
+	top: 5px;
+	right: 0;
+	width: 10px;
+	height: 10px;
+	background: #fff;
+	border: 1px solid #26252d;
+	border-radius: 50%;
+}
+
+.resume_wrapper .resume_right .resume_data .year:after{
+	content: "";
+    position: absolute;
+    top: 17px;
+    right: 4px;
+    width: 3px;
+    height: 90%;
+    background: #0175b2;
+}
+
+.resume_wrapper .resume_right .resume_data:last-child .year:after{
+	display: none;
+}
+
+.resume_wrapper .resume_right .resmue_interests .resume_info{
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+}
+
+.resume_wrapper .resume_right .resmue_interests .interests .int_icon{
+	font-size: 38px;
+	color: #0175b2;
+	margin-bottom: 10px;
+}
+
+
+@media screen and (max-width: 800px){
+	.resume_wrapper .resume_right .resume_namerole{
+		display: none;
+	}
+	.resume_wrapper .resume_left .resume_namerole{
+		display: block;
+	}
+	.resume_wrapper{
+		width: 95%;
+		margin: 10px auto;
+		flex-direction: column;
+	}
+	.resume_wrapper .resume_left,
+	.resume_wrapper .resume_right{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 424px){
+	.resume_wrapper .resume_right{
+		padding: 20px 30px;
+	}
+	.resume_wrapper .resume_right .resume_data{
+		flex-direction: column;
+	}
+	.resume_wrapper .resume_right .resume_data .year{
+		padding: 0;
+		margin-bottom: 5px;
+		width: 100%;
+		color: #0175b2;
+	}
+	.resume_wrapper .resume_right .resume_data .year:before,
+	.resume_wrapper .resume_right .resume_data .year:after{
+		display: none;
+	}
+	.resume_wrapper .resume_right .resume_data .content{
+		width: 100%;
+		padding: 0;
+	}
+	.resume_wrapper .resume_right .resmue_interests .interests .int_icon{
+		font-size: 24px;
+	}
+}</style> 
+<div  class="resume_wrapper">
+	<div class="resume_left">
+	 {%if personalinfodata.image%}
+		<div class="resume_image">
+			<img  src="{{personalinfodata.image.url}}" style="height:250px; object-fit: cover" alt="Resume_image">
+		</div>
+		{%endif%}
+		<div class="resume_bottom">
+			<div class="resume_item resume_namerole">
+				<div class="name">{{personalinfodata.firstname | upper}} {{personalinfodata.lastname | upper}}</div>
+				<div class="role">{{personaldesc.Job_title}}</div>
+			</div>
+			
+			<div class="resume_item resume_address">
+				<div class="resume_title">Address</div>
+				<div class="resume_info">
+					{{personalinfodata.city}},{{personalinfodata.state}},<br/>
+				{{personalinfodata.country}}
+				</div>
+			</div>
+
+			<div class="resume_item resume_address">
+				<div class="resume_title">Social Link</div>
+				<div class="resume_info">
+				    {% if personalinfodata.github %}
+						<b>Github:</b> <br>
+						{{personalinfodata.github}} <br> <br>
+						{%endif%}
+						{% if personalinfodata.linkedin %}
+						<b>linkedin:</b><br>
+						{{personalinfodata.linkedin}} <br> <br>
+            {%endif%}
+						{% if personalinfodata.twitter %}
+						<b>Twitter:</b><br>
+						{{personalinfodata.twitter}} <br> <br>
+            {%endif%}
+				
+						{% if personalinfodata.facebook %}
+		        <b>Facebook:</b><br>
+						{{personalinfodata.facebook}} <br> <br>
+            {%endif%}
+				</div>
+			</div>
+
+			<div class="resume_item resume_contact">
+				<div class="resume_title">Contact</div>
+				<div class="resume_info">
+					<div class="resume_subtitle">Phone</div>
+					<div class="resume_subinfo">{{personalinfodata.phone}}</div>
+				</div>
+				<div class="resume_info">
+					<div class="resume_subtitle">Email</div>
+					<div class="resume_subinfo">{{personalinfodata.email}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="resume_right">
+		<div class="resume_item resume_namerole">
+			<div class="name">{{personalinfodata.firstname | upper}} {{personalinfodata.lastname | upper}}</div>
+			<div class="role">DOB: {{personalinfodata.dob}}</div>
+		</div>
+		<div class="resume_item resume_profile">
+				<div class="resume_title">{{personaldesc.Job_title}}</div>
+				<div class="resume_info">{{personaldesc.about}}.</div>
+			</div>
+
+		<div class="resume_item resume_education">
+			<div class="resume_title">Education</div>
+			<div class="resume_info">
+			 {% for education in educationalinfodata %}
+				<div class="resume_data">
+					<div class="year">{{education.edate1}} - {{education.edate2}}</div>
+					<div class="content">
+						<p>{{education.program}}</p>
+						<p>{{education.institution}}</p>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="resume_item resume_experience">
+			<div class="resume_title">Experience</div>
+			<div class="resume_info">
+			{% for experience in experienceinfodata %}
+				<div class="resume_data">
+					<div class="year">{{experience.startingDate}} - {{experience.endingDate}}</div>
+					<div class="content">
+						<b>{{experience.title}}</b>
+						<p> <b>[ {{experience.company}} ]</b> -{{experience.experienceInfo}}.</p>
+					</div>
+				</div>
+			 {% endfor %}
+			</div>
+		</div>
+		<div class="resume_item resume_skills">
+				<div class="resume_title">Skills</div>
+				<div class="resume_info">
+					{% for skills in skilldata %}
+						<p style="float:left">{{skills.skill}}, &nbsp;</p>
+            {% endfor %}
+				</div>
+			</div>
+    {% if certificatedata %}
+		<div class="resume_item resmue_interests">
+			<div class="resume_title">Certificates</div>
+			{% for cer in certificatedata %}
+			<div class="resume_info">
+					<p>{{cer.certificate}} - [ {{cer.certificateDate}} ]</p>
+			</div>
+			{% endfor %}
+		</div>
+    {%endif%}
+
+		{% if Others %}
+		<div class="resume_item resmue_interests">
+		{% for other in Others %}
+			<div class="resume_title">{{other.title}}</div>
+			<div class="resume_info">
+					<p>{{other.introduction}}</p>
+			</div>
+		</div>
+		{% endfor %}
+    {%endif%}
+
+			<div class="resume_item resume_skills">
+				<div class="resume_title">Language</div>
+				<div class="resume_info">
+					{% for languages in languagedata %}
+						<p style="float:left">{{languages.language}}, &nbsp;</p>
+            {% endfor %}
+				</div>
+			</div>
+</div>
+</div>
+<script>
+    function printPageArea(inner) {
+      var printContent = document.getElementById(inner);
+      var WinPrint = window.open('width=1000,height=580');
+      WinPrint.document.write(printContent.innerHTML);
+      WinPrint.document.close();
+      WinPrint.focus();
+      WinPrint.print();
+      WinPrint.close();
+    }
+  </script>
 </body>
-
 </html>
+
+{% endblock %}

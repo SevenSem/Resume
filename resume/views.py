@@ -15,7 +15,7 @@ from resume.models import *
 from resume import  models
 from resume import forms
 from django.views.generic.edit import UpdateView
-from django.views.generic.edit import FormView
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class Home(CreateView):
@@ -51,8 +51,7 @@ def index(request):
     else:
          return render(request, 'pages/homee.html', data)
 
-
-
+@login_required(login_url='/account/login')
 def resumeForm(request):
     personalform = PersonalInfoForm(request.POST , request.FILES or None)
     personaldescform = PersonalDescriptionForm(request.POST or None)
@@ -124,9 +123,17 @@ def resumeForm(request):
                         otherforms.save()
 
             except IntegrityError:
-                print('error')
+                print(personalform.errors)
 
-            return redirect('templates1', personalinfo.pk)
+            return redirect('dashboard')
+        else:
+            print(personalform.errors)
+            print(eduform.errors)
+            print(certificateform.errors)
+            print(skillsform.errors)
+            print(languageform.errors)
+            print(languageform.errors)
+            print(otherform.errors)
 
     data = {
         'form': personalform,
@@ -141,12 +148,16 @@ def resumeForm(request):
     }
     return render(request, 'form/form.html', data)
 
+# def form_invalid(self, form):
+    #     print(form.errors)
+    #     return super().form_invalid(form)
+
 
 class ResumeUpdate(UpdateView):
     model = models.PersonalInfo
     form_class = forms.PersonalInfoForm
     template_name = 'form/testform.html'
-    success_url=reverse_lazy('home')
+    success_url=reverse_lazy('dashboard')
 
     def get_context_data(self, **kwargs):
         data = super(ResumeUpdate, self).get_context_data(**kwargs)
@@ -213,7 +224,7 @@ def templates1(request, id):
         data = templatesdata(id)
     else:
         return redirect('resumeform1')
-    return render(request, 'resumes/resume3.html', data)
+    return render(request, 'resumes/resume2.html', data)
 
 
 def templates2(request, id):
@@ -221,10 +232,25 @@ def templates2(request, id):
         data = templatesdata(id)
     else:
         return redirect('resumeform')
-    return render(request, 'resumes/resume2.html', data)
+    return render(request, 'resumes/resume3.html', data)
+
+def templates4(request, id):
+    if request.user.is_authenticated:
+        data = templatesdata(id)
+    else:
+        return redirect('resumeform')
+    return render(request, 'resumes/resume4.html', data)
 
 
-def templatesdata(id):
+def templates5(request, id):
+    if request.user.is_authenticated:
+        data = templatesdata(id)
+    else:
+        return redirect('resumeform')
+    return render(request, 'resumes/resume5.html', data)
+
+
+def templatesdata(request, id):
     data = {
         'personalinfodata': PersonalInfo.objects.get(id=id),
         'educationalinfodata': EducationalInfo.objects.filter(personalinfo__id=id),
@@ -288,4 +314,4 @@ def chart(request):
 class resumeDeleteView(DeleteView):
     template_name = 'pages/confirmdelete.html'
     model = models.PersonalInfo
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('dashboard')

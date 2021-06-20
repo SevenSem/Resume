@@ -143,3 +143,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'a4collegeteam@gmail.com'
 EMAIL_HOST_PASSWORD = 'A4collegeteam#'
+
+LOGIN_URL = '/accout/login'
+LOGIN_REDIRECT_URL='/'
