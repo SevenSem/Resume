@@ -124,9 +124,17 @@ def resumeForm(request):
                         otherforms.save()
 
             except IntegrityError:
-                print('error')
+                print(personalform.errors)
 
             return redirect('dashboard')
+        else:
+            print(personalform.errors)
+            print(eduform.errors)
+            print(certificateform.errors)
+            print(skillsform.errors)
+            print(languageform.errors)
+            print(languageform.errors)
+            print(otherform.errors)
 
     data = {
         'form': personalform,
@@ -140,6 +148,10 @@ def resumeForm(request):
         'templates': Templates.objects.all(),
     }
     return render(request, 'form/form.html', data)
+
+# def form_invalid(self, form):
+    #     print(form.errors)
+    #     return super().form_invalid(form)
 
 
 class ResumeUpdate(UpdateView):
