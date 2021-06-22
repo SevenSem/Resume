@@ -34,19 +34,19 @@ class PersonalInfoForm(forms.ModelForm):
                 attrs={'class': 'form-control', 'required': 'required', 'placeholder': "city"}),
             
             'facebook': forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder': "facebook"}),
+                attrs={'class': 'form-control', 'placeholder': "Facebook"}),
             
             'twitter': forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder': "twitter"}),
+                attrs={'class': 'form-control', 'placeholder': "Twitter"}),
             
             'github': forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder': "github"}),
+                attrs={'class': 'form-control', 'placeholder': "Github"}),
             
             'youtube': forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder': "youtube"}),
+                attrs={'class': 'form-control', 'placeholder': "Youtube"}),
 
             'linkedin': forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder': "linkedin"}),
+                attrs={'class': 'form-control', 'placeholder': "LinkedIn"}),
         }
 
 
