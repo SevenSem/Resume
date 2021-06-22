@@ -250,7 +250,7 @@ def templates5(request, id):
     return render(request, 'resumes/resume5.html', data)
 
 
-def templatesdata(request, id):
+def templatesdata(id):
     data = {
         'personalinfodata': PersonalInfo.objects.get(id=id),
         'educationalinfodata': EducationalInfo.objects.filter(personalinfo__id=id),
