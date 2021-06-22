@@ -17,7 +17,21 @@ class Templates(models.Model):
         return self.template
     
     
+def validate_file_extension(value):
+    import os
+    from django.core.exceptions import ValidationError
+    ext = os.path.splitext(value.name)[1]  # [0] returns path+filename
+    valid_extensions = [ '.jpg', '.png']
+    if not ext.lower() in valid_extensions:
+        raise ValidationError('Unsupported file extension.')
 
+def validate_file_size(value):
+    filesize= value.size
+    if filesize > 5485760:
+        raise ValidationError("The maximum file size that can be uploaded is 5MB")
+    else:
+        return value
+        
 class PersonalInfo(models.Model):
     template = models.ForeignKey(Templates, on_delete=models.CASCADE,default=1, blank=True)
     firstname = models.CharField(max_length=100, blank=True)
@@ -31,7 +45,7 @@ class PersonalInfo(models.Model):
     state = models.CharField(max_length=100,blank=True, null=True)
     city = models.CharField(max_length=255,blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE,blank=True, null=True)
-    image = models.ImageField(upload_to='images', blank=True)
+    image = models.ImageField(upload_to='images', blank=True, validators=[validate_file_extension, validate_file_size])
     
     facebook = models.URLField(blank=True, null=True)
     twitter = models.URLField(blank=True, null=True)
@@ -47,7 +61,7 @@ class EducationalInfo(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo,  on_delete=models.CASCADE)
     program = models.CharField(max_length=255, blank=True)
     institution = models.CharField(max_length=100, blank=True)
-    course = models.BooleanField(default=0, blank=True)
+    course = models.CharField(max_length=100, blank=True)
     edate1 = models.CharField(max_length=255, blank=True)
     edate2 = models.CharField(max_length=255, blank=True)
 
