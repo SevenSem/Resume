@@ -76,7 +76,7 @@ class ExperienceInfo(models.Model):
     course = models.CharField(max_length=255, blank=True)
     startingDate = models.CharField(max_length=255, blank=True)
     endingDate = models.CharField(max_length=255, blank=True)
-    experienceInfo = models.TextField(max_length=255, blank=True)
+    experienceInfo = models.TextField(max_length=1000, blank=True)
 
     def __str__(self):
         return self.company
@@ -104,13 +104,13 @@ class Language(models.Model):
 class PersonalDescription(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
     Job_title = models.CharField(max_length=255, blank=True)
-    about = models.TextField(max_length=255, blank=True)
+    about = models.TextField(max_length=1055, blank=True)
 
 
 class Others(models.Model):
     personalinfo = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, blank=True)
-    introduction = models.TextField(max_length=255, blank=True)
+    introduction = models.TextField(max_length=1055, blank=True)
 
 
 class Messagebox(models.Model):
@@ -118,7 +118,7 @@ class Messagebox(models.Model):
     full_Name = models.CharField(default='', max_length=100)
     email = models.CharField(default='', max_length=30, blank=True)
     subject = models.CharField(default='', max_length=50, blank=True)
-    message = models.CharField(default='', max_length=400, blank=True)
+    message = models.CharField(default='', max_length=4000, blank=True)
 
     def __str__(self):
         return self.full_Name
