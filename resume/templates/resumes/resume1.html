@@ -359,8 +359,9 @@
             </div>
           </div> <!-- end links -->
 
-          
+          {% for other in othersinfo %}
           <p class="reference-details">{{othersinfo.title}}<br>{{othersinfo.introduction}}</p>
+          {% endfor %}
 
           <!-- <div class="reference">More references available upon request.</div> -->
         </div>
