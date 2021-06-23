@@ -269,8 +269,8 @@
 
 		<a href="javascript:void(0);" onclick="printPageArea('inner')">
 			<center><button style="height:50px;width:150px;background-color:#001C4B;color:white;font-weight:bold;">
-					<i class="fas fa-download" style="color:#fff"></i>	
-				DOWNLOAD RESUME</button></center>
+					<i class="fas fa-download" style="color:#fff"></i>
+					DOWNLOAD RESUME</button></center>
 		</a>
 	</form>
 	<div id="doc2" class="yui-t7">
@@ -583,45 +583,29 @@
 
 						<div class="yui-gf">
 							<div class="yui-u first">
-								<h2>Technical</h2>
+								<h2>Language</h2>
 							</div>
 							<div class="yui-u">
 								<ul class="talent">
-									{% for skills in skilldata %}
+									{% for languages in languagedata %}
 									<ul>
-										<li>{{skills.skill}}</li>
+										<li>{{languages.language}}</li>
 									</ul>
 									{% endfor %}
-									<!-- <li>XHTML</li>
-								<li>CSS</li>
-								<li class="last">Javascript</li> -->
+
 								</ul>
 
-								<!-- <ul class="talent">
-								<li>Jquery</li>
-								<li>PHP</li>
-								<li class="last">CVS / Subversion</li>
-							</ul>
 
-							<ul class="talent">
-								<li>OS X</li>
-								<li>Windows XP/Vista</li>
-								<li class="last">Linux</li>
-							</ul> -->
 							</div>
 						</div>
-						<!--// .yui-gf-->
+
 
 						<div class="yui-gf">
-
 							<div class="yui-u first">
 								<h2>Experience</h2>
 							</div>
-							<!--// .yui-u -->
-
 							<div class="yui-u">
 								{% for experience in experienceinfodata %}
-
 								<div class="job">
 									<h2>{{experience.company}}</h2>
 									<h3>{{experience.title}}</h3>
@@ -629,61 +613,86 @@
 									<p> {{experience.experienceInfo}} </p>
 								</div>
 								{% endfor %}
-
-								<!-- <div class="job">
-								<h2>Apple Inc.</h2>
-								<h3>Senior Interface Designer</h3>
-								<h4>2005-2007</h4>
-								<p>Progressively reconceptualize multifunctional "outside the box" thinking through inexpensive methods of empowerment. Compellingly morph extensive niche markets with mission-critical ideas. Phosfluorescently deliver bricks-and-clicks strategic theme areas rather than scalable benefits. </p>
 							</div>
-
-							<div class="job">
-								<h2>Microsoft</h2>
-								<h3>Principal and Creative Lead</h3>
-								<h4>2004-2005</h4>
-								<p>Intrinsicly transform flexible manufactured products without excellent intellectual capital. Energistically evisculate orthogonal architectures through covalent action items. Assertively incentivize sticky platforms without synergistic materials. </p>
-							</div>
-
-
-							<div class="job last">
-								<h2>International Business Machines (IBM)</h2>
-								<h3>Lead Web Designer</h3>
-								<h4>2001-2004</h4>
-								<p>Globally re-engineer cross-media schemas through viral methods of empowerment. Proactively grow long-term high-impact human capital and highly efficient innovation. Intrinsicly iterate excellent e-tailers with timely e-markets.</p>
-							</div> -->
-
-							</div>
-							<!--// .yui-u -->
 						</div>
-						<!--// .yui-gf -->
 
 
-						<div class="yui-gf last">
+
+						<div class="yui-gf ">
 							<div class="yui-u first">
 								<h2>Education</h2>
 							</div>
-							{% for education in educationalinfodata %}
 							<div class="yui-u">
-								<h2>{{education.institution}}</h2>
-								<h3>{{education.program}}|{{education.edate1}} - {{education.edate2}}<strong>4.0
-										GPA</strong> </h3>
+								{% for education in educationalinfodata %}
+								<div class="job">
+									<h2>{{education.institution}}</h2>
+									<h3>{{education.program}}&nbsp;&nbsp;|&nbsp;&nbsp;{{education.edate1}} -
+										{{education.edate2}}&nbsp;&nbsp;&nbsp;&nbsp;<strong>4.0
+											GPA</strong> </h3>
+								</div>
+								{% endfor %}
 							</div>
-							{% endfor %}
 						</div>
-						<!--// .yui-gf -->
 
+						{% if certificatedata %}
+						<div class="yui-gf ">
+							<div class="yui-u first">
+								<h2>Certificates</h2>
+							</div>
+							<div class="yui-u">
+								{% for cer in certificatedata %}
+								<div class="job">
+									<h3>{{cer.certificate}} - [ {{cer.certificateDate}} ]</h3>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						{%endif%}
 
+						<div class="yui-gf ">
+							<div class="yui-u first">
+								<h2>Social Links</h2>
+							</div>
+							<div class="yui-u">
+
+								<div class="job">
+									{% if personalinfodata.github %}
+									<b>Github:</b> <br>
+									{{personalinfodata.github}} <br> <br>
+									{%endif%}
+									{% if personalinfodata.linkedin %}
+									<b>linkedin:</b><br>
+									{{personalinfodata.linkedin}} <br> <br>
+									{%endif%}
+									{% if personalinfodata.twitter %}
+									<b>Twitter:</b><br>
+									{{personalinfodata.twitter}} <br> <br>
+									{%endif%}
+
+									{% if personalinfodata.facebook %}
+									<b>Facebook:</b><br>
+									{{personalinfodata.facebook}} <br> <br>
+									{%endif%}
+								</div>
+
+							</div>
+						</div>
+
+						{% if othersinfo %}
 						<div class="yui-gf last">
 							<div class="yui-u first">
 								<h2>Others</h2>
 							</div>
 
 							<div class="yui-u">
+								{% for other in othersinfo %}
 
-								<p>{{othersinfo.title}}<br>{{othersinfo.introduction}}</p>
+								<p>{{other.title}}<br>{{other.introduction}}</p><br>
+								{% endfor %}
 							</div>
 
 						</div>
+						{%endif%}
 
 
 					</div>
@@ -694,9 +703,9 @@
 			<!--// bd -->
 
 			<div id="ft">
-				<p>{{personalinfodata.firstname}} &mdash; <a
+				<h3><p>{{personalinfodata.firstname}} &mdash; <a
 						href="mailto:name@yourdomain.com">{{personalinfodata.email}}</a> &mdash;
-					{{personalinfodata.phone}}</p>
+					{{personalinfodata.phone}}</p></h3>
 			</div>
 			<!--// footer -->
 

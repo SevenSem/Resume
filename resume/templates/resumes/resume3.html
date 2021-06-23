@@ -8,7 +8,7 @@
 <head>
 	<title>{{personalinfodata.firstname | upper}} resume</title>
 	<!-- Template 2 -->
-	
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="jquery.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -27,15 +27,16 @@
 	<form>
 		<!-- <input type="submit" VALUE="Print" ONCLICK="window.print()"> -->
 		<a href="javascript:void(0);" onclick="printPageArea('inner')">
-				<center><button style="height:50px;width:150px;background-color:#001C4B;color:white;font-weight:bold;">
-						<i class="fas fa-download" style="color:#fff"></i>	
-					DOWNLOAD RESUME</button></center></a>
+			<center><button style="height:50px;width:150px;background-color:#001C4B;color:white;font-weight:bold;">
+					<i class="fas fa-download" style="color:#fff"></i>
+					DOWNLOAD RESUME</button></center>
+		</a>
 	</form>
 	<br>
 	<div id="inner">
 		<table width="700px" height="800px" align="center">
 			<tr>
-				<td width="200px"  style="color:white; padding: 20px;background-color: #1c2833;">
+				<td width="200px" style="color:white; padding: 20px;background-color: #1c2833;">
 					{%if personalinfodata.image%}
 					<img class="image-size" src="{{personalinfodata.image.url}}"
 						style="border-radius:50%;  width:160px; height:150px" ;>
@@ -47,7 +48,7 @@
 					<p><b>Name:</b></br>
 						{{personalinfodata.firstname | upper}} {{personalinfodata.lastname | upper}}<br><br>
 						<b>Address:</b> <br>
-						{{personalinfodata.state}} <br>{{personalinfodata.country}} <br><br>
+						{{personalinfodata.state}},{{personalinfodata.country}} <br><br>
 
 						<b>Phone number:</b><br>
 						{{personalinfodata.phone}}<br><br>
@@ -59,18 +60,18 @@
 						{{personalinfodata.github}} <br> <br>
 						{%endif%}
 						{% if personalinfodata.linkedin %}
-						<b>linkedin:</b><br>
+						<b>Linkedin:</b><br>
 						{{personalinfodata.linkedin}} <br> <br>
-            {%endif%}
+						{%endif%}
 						{% if personalinfodata.twitter %}
 						<b>Twitter:</b><br>
 						{{personalinfodata.twitter}} <br> <br>
-            {%endif%}
-				
+						{%endif%}
+
 						{% if personalinfodata.facebook %}
-		        <b>Facebook:</b><br>
+						<b>Facebook:</b><br>
 						{{personalinfodata.facebook}} <br> <br>
-            {%endif%}
+						{%endif%}
 					</p>
 					<div class="line-height: normal;">
 						<b>Language:</b>
@@ -104,15 +105,24 @@
 					<p><b>{{education.program}} [{{education.edate1}} - {{education.edate2}}]</b></p>
 					{% endfor %}
 
+					{% if certificatedata %}
+
 
 					<h2>Certifications</h2>
 					<hr>
-					<p>Django framework (IT training Nepal)</p>
+					{% for cer in certificatedata %}
+					<p>{{cer.certificate}} - [ {{cer.certificateDate}} ]</p>
+					{% endfor %}
+					{%endif%}
 
-
-					<h2>{{othersinfo.title}}</h2>
+					{% if othersinfo %}
+					<h2>Others</h2>
+					{% for other in othersinfo %}
+					<p>{{other.title}}</p>
 					<hr>
 					<p>{{othersinfo.introduction}}</p>
+					{% endfor %}
+					{%endif%}
 				</td>
 			</tr>
 		</table>

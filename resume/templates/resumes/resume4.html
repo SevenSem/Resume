@@ -367,13 +367,15 @@ body{
 
 		{% if othersinfo %}
 		<div class="resume_item resmue_interests">
+				<div class="resume_title">Others</div>
 		{% for other in othersinfo %}
 			<div class="resume_title" style="color:black">{{other.title}}</div>
 			<div class="resume_info">
 					<p>{{other.introduction}}</p>
 			</div>
-		</div>
 		{% endfor %}
+		</div>
+		
     {%endif%}
 	
 
