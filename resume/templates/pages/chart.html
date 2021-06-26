@@ -53,67 +53,104 @@
 <div class="container">
 	<h3 style="color:black;"><strong>Your Predicted Personality</strong> </h3>
 
-	{% comment %} and data.type_c >= 50 and data.type_e >= 50 and data.type_a >= 50 and data.type_n >= 50 {% endcomment %}
-	{%if data.type_o >= 50 %}
-	<p style="color:black;">You are more open to new experience and have a love of learning,
-		creativity ,arts and loves to interact with new people.</p>
-	{%else%}
-	<p style="color:black;">
-		You tend to stick in daily routine rather than variety and be surrounded with the things
-		,people you know well and prefers less creativity task and entertainment.</p>
-	{%endif%}
+{%if data.type_o > 50 %}
+				<p style="color:black;">&bull;&nbsp;You are more open to new experience and have a love of learning,
+				creativity ,arts and loves to interact with new people.
+				<b> You are inventive and curious. </b></p>
+			{%elif data.type_o == 50 %}
+			<p style="color:black;">&bull;&nbsp;You may stick to the same schedule but you are 
+				more creative and artistic in nature. 
+			</p>
+			{%else%}
+			<p style="color:black;">
+					&bull;&nbsp;You tend to stick in daily routine rather than variety and be surrounded with the things
+				,people you know well and prefers less creativity task and entertainment.
+				<b> You are consistent and cautious. </b></p>
+			{%endif%}
 
-	{%if data.type_c >= 50 %}
-	<p style="color:black;">You are likely to be more
-		successful in your career ,have
-		leadership skills and you are
-		determined to purse your
-		goals.</p>
-	{%else%}
-	<p style="color:black;">
-		You are quite impulsive and
-		tends to procrastinate.</p>
-	{%endif%}
+			{%if data.type_c > 50 %}
+			<p style="color:black;">&bull;&nbsp;You are likely to be more
+				successful in your career ,have
+				leadership skills and you are
+				determined to purse your
+				goals.
+				creativity ,arts and loves to interact with new people.
+				<b> You are efficient and organized. </b></p>
+			{%elif data.type_c == 50 %}
+			<p style="color:black;">&bull;&nbsp;You make take impulsive decisions 
+				but you have leadership quality to achieve your dream.. 
+			</p>
+			{%else%}
+			<p style="color:black;">
+					&bull;&nbsp;You are quite impulsive and
+				tends to procrastinate.
+				<b> You are easy-going and careless. </b></p>
+			{%endif%}
 
-	{%if data.type_e >= 50 %}
-	<p style="color:black;">You seems to be comfortable
-		around new people and
-		interact with them .You are
-		often "life of the party" .</p>
-	{%else%}
-	<p style="color:black;">
-		You seems to be quiet,reserved and thoughtful..</p>
-	{%endif%}
-	{%if data.type_a >= 50 %}
-	<p style="color:black;">You tend to be well-liked,
-		respected, and sensitive to the
-		needs of others, have few
-		enemies and are affectionate
-		to your friends and loved ones,
-		as well as sympathetic to the
-		plights of strangers.</p>
-	{%else%}
-	<p style="color:black;">
-		You are less likely to be
-	trusted as you may seems to
-	be sarcastic and impolite.</p>
-	{%endif%}
-	{%if data.type_n >= 50 %}
-	<p style="color:black;">You are generally prone to
-		anxiety, sadness, worry, and
-		low self-esteem. You may be
-		temperamental or easily
-		angered, and seems to be self-
-		conscious and unsure of
-		themselves.</p>
-	{%else%}
-	<p style="color:black;">
-		You are confident ,brave,
-		sure of yourself and
-		adventurous.</p>
-	{%endif%}
-</div>
-{%endfor%}
+			{%if data.type_e > 50 %}
+			<p style="color:black;">&bull;&nbsp;You seems to be comfortable
+				around new people and
+				interact with them .You are
+				often "life of the party" .
+				<b> You are outgoing and energetic. </b></p>
+
+			{%elif data.type_e == 50 %}
+			<p style="color:black;">&bull;&nbsp;you seems to be a social and 
+					thoughtful persons. you love to make friends and feel comfortable around them. 
+			</p>
+			{%else%}
+			<p style="color:black;">
+					&bull;&nbsp;You seems to be quiet,reserved and thoughtful.
+				<b> You are solitary and reserved. </b></p>
+			{%endif%}
+
+			{%if data.type_a > 50 %}
+			<p style="color:black;">&bull;&nbsp;You tend to be well-liked,
+				respected, and sensitive to the
+				needs of others, have few
+				enemies and are affectionate
+				to your friends and loved ones,
+				as well as sympathetic to the
+				plights of strangers.
+				<b> You are friendly and compassionate. </b></p>
+
+			{%elif data.type_a == 50 %}
+				<p style="color:black;">&bull;&nbsp;You are affectionate to your 
+					friends and loved one but more sarcatics and impolite in nature.
+				</p>
+			{%else%}
+			<p style="color:black;">
+					&bull;&nbsp;You are less likely to be
+				trusted as you may seems to
+				be sarcastic and impolite.
+				<b> You are challenging and detached. </b></p> 
+			{%endif%}
+			
+			{%if data.type_n > 50 %}
+			<p style="color:black;">&bull;&nbsp;You are generally prone to
+				anxiety, sadness, worry, and
+				low self-esteem. You may be
+				temperamental or easily
+				angered, and seems to be self-
+				conscious and unsure of
+				themselves.
+				<b> You are sensitive and nervous. </b></p>
+			{%elif data.type_n == 50 %}
+				<p style="color:black;">&bull;&nbsp;You are quite confident and adventourous but 
+					seems to be self conscious..
+				</p>
+			{%else%}
+			<p style="color:black;">
+					&bull;&nbsp;You are confident ,brave,
+				sure of yourself and
+				adventurous.
+				<b> You are secure and confident. </b></p>
+
+			{%endif%}
+		</div>
+	</div>
+	{%endfor%}
+	<hr>
 </div>
 
 
