@@ -30,6 +30,7 @@ class CustomUserAdmin(UserAdmin):
     get_employable.short_description = 'Is Employable'
 
 admin.site.unregister(User)
+admin.site.register(Applicant)
 admin.site.register(Profile)
 admin.site.register(User, CustomUserAdmin)
 

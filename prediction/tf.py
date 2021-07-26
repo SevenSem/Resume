@@ -23,5 +23,9 @@ def get_tf_sentences(sentences, tf_words):
     tf = defaultdict(float)
     for sentence in sentences:
         words_in_s = clean_sentence(sentence)
-        tf[sentence] = sum(tf_words[word] for word in words_in_s)/len(words_in_s)
+        print("words_in_s")
+        if words_in_s:
+            tf[sentence] = sum(tf_words[word] for word in words_in_s)/len(words_in_s)
+        else:
+            tf[sentence] = 0
     return tf
