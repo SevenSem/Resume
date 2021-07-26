@@ -20,5 +20,9 @@ def get_idf_sentences(sentences, idf_words):
     idf = defaultdict(float)
     for sentence in sentences:
         words_in_s = clean_sentence(sentence)
-        idf[sentence] = sum(idf_words[word] for word in words_in_s)/len(words_in_s)
+        if words_in_s:
+            idf[sentence] = sum(idf_words[word] for word in words_in_s)/len(words_in_s)
+        else:
+            idf[sentence] = 0
+
     return idf

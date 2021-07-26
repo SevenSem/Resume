@@ -7,7 +7,7 @@ from .tf import get_tf_sentences, get_tf_words
 from .models import UploadCv
 import fitz
 from personality.models import * 
-
+from account.models import Applicant
 from django.views.generic.edit import FormView, CreateView
 from .forms import FileFieldForm
 from django.views.generic.edit import FormView
@@ -31,47 +31,31 @@ def prediction(request):
         for page in doc:
             texts += page.getText()
 
-    print(texts)
-
-
-    
     paragraph = texts
     words = get_words(paragraph)
     sentences, len_sentences = get_sentences(paragraph)
     words_count, words_len = get_word_count(words)
 
     tf_words = get_tf_words(words, words_count, words_len)
-    print('TF Words -->')
-    print('-'*30)
-    pprint(tf_words)
-    print('')
 
     tf_sentences = get_tf_sentences(sentences, tf_words)
-    print('TF Sentences -->')
-    print('-'*30)
-    pprint(tf_sentences)
-    print('')
-
+    
+    print(tf_sentences)
     idf_words = get_idf_words(words, words_count, words_len, len_sentences)
     idf_sentences = get_idf_sentences(sentences, idf_words)
 
     tfidf = {s:(tf_words[s]*idf_words[s]) for s in words}
 
     imp_word = sorted(tfidf.items(), key = lambda kv:(kv[1], kv[0]), reverse = True)
-    print('*'*30)
-    print(imp_word)
-    print('+'*100)
-    print('')
-    print('-'*30)
 
     keywords_test=  UploadCv.objects.filter(cv_user=request.user).order_by("-id")[0]
     keyword = keywords_test.keywords
     stfidf = {s:(tf_sentences[s]*idf_sentences[s]) for s in sentences}
     imp_sentences = sorted(stfidf.items(), key = lambda kv:(kv[1], kv[0]), reverse = True)
-    print('*'*30)
-    print(imp_sentences)
-    print('+'*100)
 
+        
+    tfidfimpsentnc = {s:(tf_sentences[s]*idf_sentences[s]) for s in sentences}
+    imp_sentences_line = sorted(tfidfimpsentnc.items(), key = lambda kv:(kv[1], kv[0]), reverse = True)
 
 
     #converting string into list, using string.split 
@@ -89,37 +73,65 @@ def prediction(request):
 
     words_counts = [data for data in imp_word if any(i in data for i in test_list)]
 
-    print(words_counts)
-    print("res",results)
-    def drawChart():
-        datas = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['Work', {data}],
-        ['Eat', 2],
-        ])
-        return draw
+
+    print("imp_word ++++++")
+    print(imp_word)
+    print("imp_word++++++")
+    print(results)
     key = []
     value = []
+
+    keyforrem =[]
+    valueforrem = []
+
+    if imp_word:   
+        index = 0
+        for data in imp_word:
+            index = index+1
+            
+            x =float(data[1]*1000)
+            y =data[0]
+            keyforrem.append(y)
+            valueforrem.append(x)
+
+        print("tindx",index)
+
     if results:    
         for i in results:
             x =int(i[1]*1000)
-            print(x)
+            y =i[0]
+            key.append(y)
             value.append(x)
-        print(value)
     
-    if results:    
-        for i in results:
-            x =i[0]
-            key.append(x)
-        print(key)
-    print(key[0])
+    
+    isentences = []
+    if imp_sentences_line:
+        for i in imp_sentences_line:
+            imp = i[0]
+            isentences.append(imp)
+            
+
+    if key:
+        bestkey =  key[0]
+        bestsecondkey =  key[1]
+    else:
+        bestkey = 0
+        bestsecondkey =  0
+
+
+    print(valueforrem)
     data = {
         'data': results,
         'key' : key,
         'value' : value,
-        'bestkey' : key[0],
+        'keyforrem' : keyforrem,
+        'valueforrem' : valueforrem,
+        'bestkey' :bestkey,
+        'bestsecondkey' : bestsecondkey,
         'keywords' : test_list,
         'file_url': epdf,
+        'imp_sentences_line' : isentences[0],
+
         'avg' : PersonalityData.objects.filter(user__username= request.user).order_by('-id')[:1],
         'personalityresult' : PersonalityResult.objects.all()
     }
