@@ -42,8 +42,7 @@ class PersonalityData(models.Model):
     type_a = models.DecimalField(max_digits=5, decimal_places=2)
     type_n = models.DecimalField(max_digits=5, decimal_places=2)
 
-    def __str__(self):
-        return self.id
+
 
 class PersonalityResult(models.Model):
     category        = models.ForeignKey(PersonalityType, on_delete=models.CASCADE)
