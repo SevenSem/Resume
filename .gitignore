@@ -7,7 +7,6 @@ __pycache__/
 *.so
 .zip/
 staticfile/
-media/
 # Distribution / packaging
 .Python
 build/
@@ -159,7 +158,7 @@ yarn-debug.log*
 yarn-error.log*
 frontend
 .vscode
-media/*
+
 pysh
 pysh/*
 */*script*.*
