@@ -113,10 +113,8 @@ def prediction(request):
 
     if key:
         bestkey =  key[0]
-        bestsecondkey =  key[1]
     else:
         bestkey = 0
-        bestsecondkey =  0
 
 
     print(valueforrem)
@@ -127,7 +125,6 @@ def prediction(request):
         'keyforrem' : keyforrem,
         'valueforrem' : valueforrem,
         'bestkey' :bestkey,
-        'bestsecondkey' : bestsecondkey,
         'keywords' : test_list,
         'file_url': epdf,
         'imp_sentences_line' : isentences[0],
