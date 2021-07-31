@@ -17,5 +17,6 @@ urlpatterns = [
         template_name='personality/aptitude_finished.html'),
         name='aptitude_finished'),
     path('test/', views.PersonalityTest.as_view(), name='personality_test'),
+    path('age-gender/', views.AgeGender.as_view(), name='age_gender'),
     path('completed/', views.PersonalityCompleted.as_view(), name='personality_completed'),
 ] 

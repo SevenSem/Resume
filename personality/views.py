@@ -1,17 +1,19 @@
 import os
 import pickle
+from django.db import models
 import numpy as np
 import pandas as pd
 
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView,CreateView
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
-
-from .models import TestQuestion, TestChoice, PersonalityType, PersonalityQuestion, PersonalityData
+from resume.models import PersonalInfo
+from .models import TestQuestion, TestChoice, PersonalityType, PersonalityQuestion, PersonalityData,AgeAndGender
 from .utils import clear_test_session
+from django.urls import reverse_lazy
 
 User = get_user_model()
 classifer_base = os.path.join(settings.BASE_DIR, 'personality', 'classifiers')
@@ -145,6 +147,15 @@ class PersonalityTest(LoginRequiredMixin, View):
             return redirect('personality_completed')
         return redirect('personality_test')
 
+class AgeGender(CreateView):
+    model= AgeAndGender
+    fields=['age','gender']
+    success_url = reverse_lazy('personality_test')
+    template_name="personality/age_gender.html"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(AgeGender, self).form_valid(form)
 
 class PersonalityCompleted(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
@@ -161,7 +172,11 @@ class PersonalityCompleted(LoginRequiredMixin, View):
             average = [avg_o*20, avg_c*20, avg_e*20, avg_a*20, avg_n*20]
             # averages = [3.1, 3.1, 3.2, 3.2, 1.9]
 
-            created = PersonalityData.objects.create(user = request.user,type_o=avg_o*20, type_c=avg_c*20, type_e=avg_e*20, type_a=avg_a*20,type_n=avg_n*20)
+            x = AgeAndGender.objects.all().filter(user=request.user).order_by('-id')[0] 
+            print(x)
+            print(x.gender)
+            print(x.age)
+            created = PersonalityData.objects.create(user = request.user,type_o=avg_o*2, gender= x.gender, age=x.age,type_c=avg_c*2, type_e=avg_e*2, type_a=avg_a*2,type_n=avg_n*2)
             
             print("type")
             print(averages)

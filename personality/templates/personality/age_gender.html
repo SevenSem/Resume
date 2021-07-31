@@ -1,0 +1,9 @@
+{% extends 'master/master.html' %}
+
+
+{% block content %}
+<form class="form" method='POST'>{%csrf_token%}
+{{form}}
+<input type="submit" />
+</form>
+{%endblock%}

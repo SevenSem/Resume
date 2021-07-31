@@ -149,3 +149,5 @@ EMAIL_HOST_PASSWORD = 'A4collegeteam#'
 
 LOGIN_URL = '/accout/login'
 LOGIN_REDIRECT_URL='/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
