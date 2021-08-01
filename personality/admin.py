@@ -19,7 +19,7 @@ admin.site.register(TestChoice, TestChoiceAdmin)
 admin.site.register(TestQuestion)
 
 class DataAdmin(admin.ModelAdmin):
-    list_display = ('user','age', 'gender','type_o','type_c','type_e','type_a','type_n')
+    list_display = ('user','age', 'gender','type_o','type_c','type_e','type_a','type_n','personality')
 
 admin.site.register(PersonalityData,DataAdmin)
 admin.site.register(PersonalityResult)

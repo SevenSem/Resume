@@ -43,10 +43,11 @@ class PersonalityData(models.Model):
     type_e = models.DecimalField(max_digits=5, decimal_places=2)
     type_a = models.DecimalField(max_digits=5, decimal_places=2)
     type_n = models.DecimalField(max_digits=5, decimal_places=2)
+    personality = models.CharField(max_length=100,blank=True, null=True)
 
 GENDER_CHOICES = (
-    ('M', 'Male'),
-    ('F', 'Female')
+    ('1', 'Male'),
+    ('0', 'Female')
 )
 
 
